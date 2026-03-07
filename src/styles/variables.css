@@ -1,53 +1,103 @@
-/* ─── Design tokens (light mode) ─────────────────────────────────────────── */
+/**
+ * Design tokens — Schar E-commerce
+ *
+ * Dark-first streetwear aesthetic.
+ * Inspired by: Yeezy Supply, Aime Leon Dore, Corteiz.
+ *
+ * Palette philosophy:
+ *   - Near-black backgrounds with tight value steps
+ *   - Off-white foreground (warmer than pure white)
+ *   - Single accent colour (white) — used sparingly
+ *   - Zero hue in the UI palette → pure monochromatic tension
+ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #09090b;
+  /* ─── Background scale ───────────────────────────────────────────────────
+   * Four steps from near-black to dark-mid-grey.
+   * bg            → page canvas
+   * surface       → cards, panels, modals
+   * surface-2     → hover / active surfaces
+   * surface-3     → inset wells, code blocks, subtle fills
+   */
+  --background:  #0a0a0a;
+  --surface:     #111111;
+  --surface-2:   #1a1a1a;
+  --surface-3:   #222222;
 
-  --primary: #18181b;
-  --primary-foreground: #fafafa;
+  /* ─── Foreground scale ───────────────────────────────────────────────────
+   * foreground        → primary text (almost white, slight warmth)
+   * foreground-muted  → secondary labels, captions
+   * foreground-subtle → disabled, placeholder
+   */
+  --foreground:         #f5f5f5;
+  --foreground-muted:   #a3a3a3;
+  --foreground-subtle:  #525252;
 
-  --secondary: #f4f4f5;
-  --secondary-foreground: #18181b;
+  /* ─── Accent / action ────────────────────────────────────────────────────
+   * accent            → primary CTAs, highlighted borders
+   * accent-foreground → text/icons sitting on accent fills
+   * white             → reserved for hero moments, product names on dark
+   */
+  --accent:             #e8e8e8;
+  --accent-foreground:  #0a0a0a;
+  --white:              #ffffff;
 
-  --muted: #f4f4f5;
-  --muted-foreground: #71717a;
+  /* ─── Borders ────────────────────────────────────────────────────────────
+   * border        → default hairlines, card outlines
+   * border-strong → active, focused, or divider-weight lines
+   */
+  --border:        #1e1e1e;
+  --border-strong: #333333;
 
-  --accent: #f4f4f5;
-  --accent-foreground: #18181b;
+  /* ─── Input ──────────────────────────────────────────────────────────────
+   * Distinct from border to allow independent control of form elements.
+   */
+  --input:  #1e1e1e;
+  --ring:   #e8e8e8;
 
-  --destructive: #ef4444;
+  /* ─── Semantic status ────────────────────────────────────────────────────  */
+  --destructive:            #dc2626;
   --destructive-foreground: #fafafa;
+  --success:                #22c55e;
+  --success-foreground:     #052e16;
+  --warning:                #d97706;
+  --warning-foreground:     #1c0505;
 
-  --border: #e4e4e7;
-  --input: #e4e4e7;
-  --ring: #18181b;
+  /* ─── Overlay ────────────────────────────────────────────────────────────
+   * Used for drawer backdrops, image overlays, modal scrims.
+   */
+  --overlay-sm: rgb(0 0 0 / 0.50);
+  --overlay:    rgb(0 0 0 / 0.70);
+  --overlay-lg: rgb(0 0 0 / 0.88);
 
-  --radius: 0.5rem;
-}
+  /* ─── Border radius ──────────────────────────────────────────────────────
+   * Sharp, minimal. Streetwear rejects rounded softness.
+   * Default intentionally small (2 px) — not zero, to avoid harsh clipping.
+   */
+  --radius-none: 0px;
+  --radius-sm:   2px;
+  --radius:      3px;
+  --radius-md:   6px;
+  --radius-full: 9999px;
 
-/* ─── Design tokens (dark mode) ──────────────────────────────────────────── */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #09090b;
-    --foreground: #fafafa;
+  /* ─── Transitions ────────────────────────────────────────────────────────  */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out:    cubic-bezier(0, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-expo:   cubic-bezier(0.19, 1, 0.22, 1);
 
-    --primary: #fafafa;
-    --primary-foreground: #18181b;
+  --duration-fast:   150ms;
+  --duration-base:   250ms;
+  --duration-slow:   400ms;
+  --duration-slower: 600ms;
 
-    --secondary: #27272a;
-    --secondary-foreground: #fafafa;
-
-    --muted: #27272a;
-    --muted-foreground: #a1a1aa;
-
-    --accent: #27272a;
-    --accent-foreground: #fafafa;
-
-    --destructive: #7f1d1d;
-    --destructive-foreground: #fafafa;
-
-    --border: #27272a;
-    --input: #27272a;
-    --ring: #d4d4d8;
-  }
+  /* ─── Z-index scale ──────────────────────────────────────────────────────  */
+  --z-below:   -1;
+  --z-base:     0;
+  --z-raised:   10;
+  --z-dropdown: 100;
+  --z-sticky:   200;
+  --z-overlay:  300;
+  --z-modal:    400;
+  --z-toast:    500;
 }
