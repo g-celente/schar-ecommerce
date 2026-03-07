@@ -1,27 +1,329 @@
+/* ─── Imports ─────────────────────────────────────────────────────────────── */
 @import "tailwindcss";
 @import "../styles/variables.css";
+@import "../styles/typography.css";
 
-@theme inline {
+/* ─── Tailwind v4 @theme ──────────────────────────────────────────────────────
+ * Maps raw CSS custom properties → Tailwind utility classes.
+ * Every --color-* creates bg-*, text-*, border-* etc.
+ * Every --font-*  creates font-* utilities.
+ * Every --text-*  creates text-* (font-size) utilities.
+ * Every --radius-* creates rounded-* utilities.
+ * Every --shadow-* creates shadow-* utilities.
+ * Every --spacing-* extends the spacing scale (p-*, m-*, gap-*, w-*, h-*).
+ */
+@theme {
+  /* ── Breakpoints ────────────────────────────────── */
+  --breakpoint-xs:  480px;   /* phablet / large phone  */
+  --breakpoint-sm:  640px;
+  --breakpoint-md:  768px;   /* tablet                 */
+  --breakpoint-lg:  1024px;  /* small laptop           */
+  --breakpoint-xl:  1280px;  /* desktop                */
+  --breakpoint-2xl: 1536px;  /* wide desktop           */
+
+  /* ── Color palette ──────────────────────────────── */
+
+  /* Backgrounds */
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
+  --color-surface:    var(--surface);
+  --color-surface-2:  var(--surface-2);
+  --color-surface-3:  var(--surface-3);
+
+  /* Text */
+  --color-foreground:        var(--foreground);
+  --color-foreground-muted:  var(--foreground-muted);
+  --color-foreground-subtle: var(--foreground-subtle);
+
+  /* Accent */
+  --color-accent:            var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-border: var(--border);
+  --color-white:             var(--white);
+
+  /* Borders */
+  --color-border:        var(--border);
+  --color-border-strong: var(--border-strong);
+
+  /* Form */
   --color-input: var(--input);
-  --color-ring: var(--ring);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ring:  var(--ring);
+
+  /* Semantic */
+  --color-destructive:            var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success:                var(--success);
+  --color-success-foreground:     var(--success-foreground);
+  --color-warning:                var(--warning);
+  --color-warning-foreground:     var(--warning-foreground);
+
+  /* ── Typography ─────────────────────────────────── */
+
+  /* Font families — consume CSS vars injected by next/font */
+  --font-sans:    var(--font-inter),          system-ui, sans-serif;
+  --font-display: var(--font-bebas-neue),     Impact, sans-serif;
+  --font-heading: var(--font-space-grotesk),  system-ui, sans-serif;
+  --font-mono:    ui-monospace, "Cascadia Code", monospace;
+
+  /* Fallback family names (used inside .type-* classes) */
+  --font-display-fallback: Impact, sans-serif;
+  --font-heading-fallback: system-ui, sans-serif;
+  --font-body-fallback:    system-ui, sans-serif;
+
+  /* Font sizes + their default leading/tracking
+   * Format: --text-{name}, --text-{name}--line-height, --text-{name}--letter-spacing
+   */
+  --text-hero:                      clamp(4.5rem, 18vw,  11rem);
+  --text-hero--line-height:         0.88;
+  --text-hero--letter-spacing:      0.02em;
+
+  --text-display:                   clamp(3rem,   10vw,  6.5rem);
+  --text-display--line-height:      0.92;
+  --text-display--letter-spacing:   0.02em;
+
+  --text-title:                     clamp(1.875rem, 5vw, 3rem);
+  --text-title--line-height:        1.05;
+  --text-title--letter-spacing:     -0.025em;
+
+  --text-heading:                   clamp(1.25rem, 2.5vw, 1.75rem);
+  --text-heading--line-height:      1.2;
+  --text-heading--letter-spacing:   -0.015em;
+
+  --text-subheading:                1.125rem;
+  --text-subheading--line-height:   1.4;
+  --text-subheading--letter-spacing:-0.01em;
+
+  --text-body:                      1rem;
+  --text-body--line-height:         1.625;
+
+  --text-small:                     0.875rem;
+  --text-small--line-height:        1.5;
+
+  --text-xs:                        0.75rem;
+  --text-xs--line-height:           1.4;
+
+  --text-label:                     0.6875rem;
+  --text-label--line-height:        1;
+  --text-label--letter-spacing:     0.12em;
+
+  /* ── Border radius ──────────────────────────────── */
+  --radius-none: var(--radius-none);
+  --radius-sm:   var(--radius-sm);
+  --radius:      var(--radius);
+  --radius-md:   var(--radius-md);
+  --radius-full: var(--radius-full);
+
+  /* ── Shadows (dark-optimised) ───────────────────── */
+  --shadow-xs: 0 1px 2px  rgb(0 0 0 / 0.80);
+  --shadow-sm: 0 1px 4px  rgb(0 0 0 / 0.70);
+  --shadow:    0 2px 10px rgb(0 0 0 / 0.60);
+  --shadow-md: 0 4px 20px rgb(0 0 0 / 0.50);
+  --shadow-lg: 0 8px 40px rgb(0 0 0 / 0.45);
+  --shadow-xl: 0 16px 64px rgb(0 0 0 / 0.40);
+  --shadow-glow: 0 0 30px rgb(232 232 232 / 0.07);
+
+  /* ── Spacing extensions ─────────────────────────── */
+  /* Spacing values added on top of Tailwind's default 4px scale */
+  --spacing-section-sm: 4rem;   /* 64px  — sm section breathing room  */
+  --spacing-section:    6rem;   /* 96px  — default section padding     */
+  --spacing-section-lg: 9rem;   /* 144px — generous section            */
+  --spacing-section-xl: 12rem;  /* 192px — hero / landing sections     */
+
+  /* Product grid gutter */
+  --spacing-grid-gap:    0.75rem; /* 12px mobile  */
+  --spacing-grid-gap-md: 1rem;    /* 16px tablet  */
+  --spacing-grid-gap-lg: 1.25rem; /* 20px desktop */
+
+  /* ── Transitions ────────────────────────────────── */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out:    cubic-bezier(0, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-expo:   cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+/* ─── Base layer ──────────────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    scroll-behavior: smooth;
+    /* Prevent layout shift from scrollbar appearing */
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-inter), system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: 1.625;
+    min-height: 100dvh;
+    /* Prevent orphaned text */
+    text-wrap: pretty;
+  }
+
+  /* Text selection */
+  ::selection {
+    background-color: var(--accent);
+    color: var(--accent-foreground);
+  }
+
+  /* Focus ring — consistent across all interactive elements */
+  :focus-visible {
+    outline: 1.5px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Scrollbar — minimal, matches dark theme */
+  ::-webkit-scrollbar       { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: var(--background); }
+  ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 99px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--foreground-subtle); }
+
+  /* Images & media */
+  img, video, svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Interactive resets */
+  button { cursor: pointer; }
+  a { color: inherit; text-decoration: none; }
+
+  /* Heading defaults — Space Grotesk */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-space-grotesk), system-ui, sans-serif;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  /* HR */
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+  }
+}
+
+/* ─── Utilities layer ─────────────────────────────────────────────────────── */
+@layer utilities {
+  /* ── Container system ───────────────────────────── */
+  /*
+   * .container — max 1440px, responsive horizontal padding.
+   * Breakpoints match the @theme above.
+   *
+   * Mobile  (< 768px):  px-4  (16px either side)
+   * Tablet  (≥ 768px):  px-6  (24px)
+   * Laptop  (≥ 1024px): px-10 (40px)
+   * Desktop (≥ 1280px): px-12 (48px)
+   */
+  .container {
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 768px)  { .container { padding-inline: 1.5rem; } }
+  @media (min-width: 1024px) { .container { padding-inline: 2.5rem; } }
+  @media (min-width: 1280px) { .container { padding-inline: 3rem;   } }
+
+  /* Narrow variant — editorial content, blog posts */
+  .container-narrow {
+    width: 100%;
+    max-width: 780px;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 768px)  { .container-narrow { padding-inline: 1.5rem; } }
+
+  /* ── Section spacing ────────────────────────────── */
+  .section {
+    padding-block: 4rem;
+  }
+  @media (min-width: 768px)  { .section { padding-block: 6rem;  } }
+  @media (min-width: 1024px) { .section { padding-block: 8rem;  } }
+  @media (min-width: 1280px) { .section { padding-block: 10rem; } }
+
+  .section-sm {
+    padding-block: 2.5rem;
+  }
+  @media (min-width: 768px) { .section-sm { padding-block: 4rem; } }
+
+  /* ── Product grid ───────────────────────────────── */
+  /*
+   * 2 columns mobile, 3 tablet, 4 desktop.
+   * Gap scales with viewport.
+   */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  @media (min-width: 640px)  { .product-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem;    } }
+  @media (min-width: 1024px) { .product-grid { grid-template-columns: repeat(4, 1fr); gap: 1.25rem; } }
+
+  /* ── Aspect ratios ──────────────────────────────── */
+  .aspect-product   { aspect-ratio: 3 / 4;  } /* portrait — standard product */
+  .aspect-editorial { aspect-ratio: 4 / 5;  } /* slightly taller editorial   */
+  .aspect-banner    { aspect-ratio: 21 / 9; } /* wide hero banner            */
+  .aspect-square    { aspect-ratio: 1 / 1;  }
+
+  /* ── Image overlays ─────────────────────────────── */
+  .overlay-bottom {
+    background: linear-gradient(
+      to top,
+      rgb(0 0 0 / 0.80) 0%,
+      rgb(0 0 0 / 0.20) 55%,
+      transparent 100%
+    );
+  }
+
+  .overlay-full {
+    background: rgb(0 0 0 / 0.55);
+  }
+
+  /* ── Typography helpers ─────────────────────────── */
+  .text-balance { text-wrap: balance; }
+  .text-pretty  { text-wrap: pretty;  }
+
+  /* ── Interactive state helpers ──────────────────── */
+  .interactive {
+    transition: opacity var(--duration-base) var(--ease-smooth),
+                transform var(--duration-base) var(--ease-smooth);
+  }
+  .interactive:hover   { opacity: 0.85; }
+  .interactive:active  { transform: scale(0.98); }
+
+  /* ── Ring / inset border ───────────────────────── */
+  .ring-inset {
+    box-shadow: inset 0 0 0 1px var(--border);
+  }
+  .ring-inset-strong {
+    box-shadow: inset 0 0 0 1px var(--border-strong);
+  }
+
+  /* ── Glow effect ────────────────────────────────── */
+  .glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* ── Hide scrollbar but keep scroll ────────────── */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* ── Truncate text ──────────────────────────────── */
+  .line-clamp-1 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; }
+  .line-clamp-2 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .line-clamp-3 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
 }
