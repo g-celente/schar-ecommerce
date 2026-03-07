@@ -1,0 +1,147 @@
+/**
+ * Typography — Schar E-commerce design system
+ *
+ * Typeface rationale:
+ *   Bebas Neue   → hero / display  — condensed, uppercase, raw energy
+ *   Space Grotesk → headings / UI  — geometric, confident, modern
+ *   Inter         → body / labels  — neutral, legible at all sizes
+ *
+ * Scale (mobile-first, fluid via clamp):
+ *   .type-hero         ~11rem  — full-bleed hero text
+ *   .type-display      ~6.5rem — section titlecards
+ *   .type-title        ~3rem   — page titles, editorial callouts
+ *   .type-heading      ~1.75rem— product names, card headings
+ *   .type-subheading   1.125rem— supporting copy, section intros
+ *   .type-body         1rem    — paragraph body copy
+ *   .type-small        0.875rem— captions, secondary info
+ *   .type-label        0.6875rem — overlines, uppercase tags
+ *   .type-price        1rem    — standard product price
+ *   .type-price-lg     1.5rem  — cart totals, hero price callout
+ */
+
+@layer components {
+  /* ─── Hero ──────────────────────────────────────────────────────────────
+   * Full-bleed, screen-relative size. Always Bebas Neue.
+   * Usage: hero section word marks, single-word statements.
+   */
+  .type-hero {
+    font-family: var(--font-bebas-neue), var(--font-display-fallback), sans-serif;
+    font-size: clamp(4.5rem, 18vw, 11rem);
+    font-weight: 400; /* Bebas Neue has only one weight */
+    line-height: 0.88;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  /* ─── Display ───────────────────────────────────────────────────────────
+   * Slightly smaller than hero. Used for section headers, campaign titles.
+   */
+  .type-display {
+    font-family: var(--font-bebas-neue), var(--font-display-fallback), sans-serif;
+    font-size: clamp(3rem, 10vw, 6.5rem);
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  /* ─── Title ─────────────────────────────────────────────────────────────
+   * Page-level headings, editorial callout numbers.
+   * Space Grotesk at heavy weight.
+   */
+  .type-title {
+    font-family: var(--font-space-grotesk), var(--font-heading-fallback), sans-serif;
+    font-size: clamp(1.875rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+  }
+
+  /* ─── Heading ───────────────────────────────────────────────────────────
+   * Product card titles, modal headers, sidebar headings.
+   */
+  .type-heading {
+    font-family: var(--font-space-grotesk), var(--font-heading-fallback), sans-serif;
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+  }
+
+  /* ─── Subheading ────────────────────────────────────────────────────────
+   * Supporting copy for sections, drawer headers.
+   */
+  .type-subheading {
+    font-family: var(--font-space-grotesk), var(--font-heading-fallback), sans-serif;
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+
+  /* ─── Body ──────────────────────────────────────────────────────────────
+   * Default paragraph copy. Inter for maximum legibility.
+   */
+  .type-body {
+    font-family: var(--font-inter), var(--font-body-fallback), sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.625;
+    letter-spacing: 0em;
+  }
+
+  /* ─── Small ─────────────────────────────────────────────────────────────
+   * Captions, secondary info, timestamps.
+   */
+  .type-small {
+    font-family: var(--font-inter), var(--font-body-fallback), sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0em;
+  }
+
+  /* ─── Label / Overline ──────────────────────────────────────────────────
+   * ALL-CAPS micro-labels. Category tags, status badges, section overlines.
+   * Tracked wide for readability at very small size.
+   */
+  .type-label {
+    font-family: var(--font-space-grotesk), var(--font-heading-fallback), sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* ─── Price ─────────────────────────────────────────────────────────────
+   * Standard product card price.
+   */
+  .type-price {
+    font-family: var(--font-space-grotesk), var(--font-heading-fallback), sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+
+  /* ─── Price large ───────────────────────────────────────────────────────
+   * Cart totals, product detail hero price.
+   */
+  .type-price-lg {
+    font-family: var(--font-space-grotesk), var(--font-heading-fallback), sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.025em;
+  }
+
+  /* ─── Numeric ───────────────────────────────────────────────────────────
+   * Tabular figures for product counts, quantities, cart totals.
+   */
+  .type-numeric {
+    font-family: var(--font-space-grotesk), var(--font-heading-fallback), sans-serif;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+}
