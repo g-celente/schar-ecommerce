@@ -1,11 +1,9 @@
-import NextAuth from "next-auth";
-import authConfig from "./auth.config";
+// Deprecated in Next.js 16 — auth protection moved to proxy.ts
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
-export const { auth: middleware } = NextAuth(authConfig);
+export default function middleware(_req: NextRequest) {
+  return NextResponse.next();
+}
 
-export const config = {
-  // Run on all routes except static files, images, and Next.js internals
-  matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
-  ],
-};
+export const config = { matcher: [] };
