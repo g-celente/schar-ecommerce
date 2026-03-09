@@ -21,6 +21,7 @@ export interface Product {
   images: ProductImage[];
   category: Category;
   tags: string[];
+  sizes?: string[];
   stock: number;
   rating: number;
   reviewCount: number;
