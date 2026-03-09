@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useSession, signOut } from "next-auth/react";
 import { Container } from "@/components/ui/Container";
 import { ROUTES, SITE_NAME } from "@/lib/constants";
 import { cn } from "@/lib/utils";
@@ -21,6 +22,8 @@ export function Navbar() {
   const [mounted, setMounted] = useState(false);
   const openCart = useCartStore((s) => s.openCart);
   const itemCount = useCartStore((s) => s.itemCount());
+  const { data: session } = useSession();
+  const isLoggedIn = !!session?.user;
 
   useEffect(() => setMounted(true), []);
 
@@ -77,12 +80,30 @@ export function Navbar() {
 
             {/* â”€â”€ Desktop actions â”€â”€ */}
             <div className="hidden md:flex items-center gap-5">
-              <Link
-                href={ROUTES.login}
-                className="type-label text-foreground-muted tracking-[0.12em] transition-colors hover:text-accent"
-              >
-                ACCOUNT
-              </Link>
+              {isLoggedIn ? (
+                <>
+                  <Link
+                    href={ROUTES.account}
+                    className="type-label text-foreground-muted tracking-[0.12em] transition-colors hover:text-accent"
+                  >
+                    {session.user?.name?.split(" ")[0]?.toUpperCase() ?? "ACCOUNT"}
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => signOut({ callbackUrl: ROUTES.home })}
+                    className="type-label text-foreground-subtle tracking-[0.12em] transition-colors hover:text-foreground"
+                  >
+                    SIGN OUT
+                  </button>
+                </>
+              ) : (
+                <Link
+                  href={ROUTES.login}
+                  className="type-label text-foreground-muted tracking-[0.12em] transition-colors hover:text-accent"
+                >
+                  ACCOUNT
+                </Link>
+              )}
               <button
                 type="button"
                 onClick={openCart}

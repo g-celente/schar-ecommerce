@@ -1,12 +1,23 @@
+﻿import type { Metadata } from "next";
+import { RegisterForm } from "@/features/auth/components/RegisterForm";
+import { SITE_NAME } from "@/lib/constants";
+
+export const metadata: Metadata = {
+  title: `Create Account`,
+  description: `Join ${SITE_NAME} and start shopping today`,
+};
+
 export default function RegisterPage() {
   return (
-    <main className="flex min-h-screen items-center justify-center">
-      <div className="w-full max-w-sm space-y-6 rounded-(--radius) border border-border p-8">
-        <h1 className="text-2xl font-bold">Create account</h1>
-        <p className="text-sm text-muted-foreground">
-          Join Schar and start shopping today.
-        </p>
-        {/* RegisterForm will live in features/auth/components */}
+    <main className="flex min-h-dvh items-center justify-center px-4 py-20">
+      <div className="w-full max-w-sm space-y-8">
+        <div className="space-y-1">
+          <p className="type-label tracking-[0.3em] text-foreground-muted">
+            {SITE_NAME.toUpperCase()}
+          </p>
+          <h1 className="type-display text-3xl">CREATE ACCOUNT</h1>
+        </div>
+        <RegisterForm />
       </div>
     </main>
   );

@@ -3,6 +3,8 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CartDrawer } from "@/features/cart/components/CartDrawer";
+import { CartSync } from "@/features/cart/components/CartSync";
+import { AuthProvider } from "@/features/auth/components/AuthProvider";
 import { SITE_NAME, SITE_DESCRIPTION } from "@/lib/constants";
 import { fontVariables } from "@/lib/fonts";
 
@@ -32,10 +34,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${fontVariables} antialiased flex min-h-dvh flex-col bg-background text-foreground`}>
-        <Navbar />
-        <CartDrawer />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <AuthProvider>
+          <CartSync />
+          <Navbar />
+          <CartDrawer />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );
