@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { CartDrawer } from "@/features/cart/components/CartDrawer";
 import { SITE_NAME, SITE_DESCRIPTION } from "@/lib/constants";
 import { fontVariables } from "@/lib/fonts";
 
@@ -32,6 +33,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className={`${fontVariables} antialiased flex min-h-dvh flex-col bg-background text-foreground`}>
         <Navbar />
+        <CartDrawer />
         <main className="flex-1">{children}</main>
         <Footer />
       </body>

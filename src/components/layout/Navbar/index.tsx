@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { ROUTES, SITE_NAME } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import { useCartStore } from "@/features/cart/store/cart.store";
 
 const NAV_LINKS = [
   { label: "STORE", href: ROUTES.products },
@@ -17,6 +18,11 @@ const NAV_LINKS = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const openCart = useCartStore((s) => s.openCart);
+  const itemCount = useCartStore((s) => s.itemCount());
+
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 48);
@@ -77,24 +83,36 @@ export function Navbar() {
               >
                 ACCOUNT
               </Link>
-              <Link
-                href={ROUTES.cart}
+              <button
+                type="button"
+                onClick={openCart}
+                aria-label={`Open shopping bag, ${mounted ? itemCount : 0} items`}
                 className="relative type-label text-foreground-muted tracking-[0.12em] transition-colors hover:text-accent"
-                aria-label="Cart"
               >
-                CART (0)
-              </Link>
+                BAG ({mounted ? itemCount : 0})
+                {mounted && itemCount > 0 && (
+                  <span className="absolute -top-1.5 -right-2.5 w-4 h-4 flex items-center justify-center rounded-full bg-foreground text-background text-[0.5rem] font-bold">
+                    {itemCount > 9 ? "9+" : itemCount}
+                  </span>
+                )}
+              </button>
             </div>
 
             {/* â”€â”€ Mobile: cart + hamburger â”€â”€ */}
             <div className="flex items-center gap-4 md:hidden">
-              <Link
-                href={ROUTES.cart}
-                className="type-label text-foreground-muted tracking-widest transition-colors hover:text-accent"
-                aria-label="Cart"
+              <button
+                type="button"
+                onClick={openCart}
+                aria-label={`Open shopping bag, ${mounted ? itemCount : 0} items`}
+                className="relative type-label text-foreground-muted tracking-widest transition-colors hover:text-accent"
               >
                 BAG
-              </Link>
+                {mounted && itemCount > 0 && (
+                  <span className="absolute -top-1.5 -right-2.5 w-4 h-4 flex items-center justify-center rounded-full bg-foreground text-background text-[0.5rem] font-bold">
+                    {itemCount > 9 ? "9+" : itemCount}
+                  </span>
+                )}
+              </button>
 
               <button
                 type="button"
@@ -173,13 +191,13 @@ export function Navbar() {
                 >
                   ACCOUNT
                 </Link>
-                <Link
-                  href={ROUTES.cart}
-                  onClick={() => setMenuOpen(false)}
+                <button
+                  type="button"
+                  onClick={() => { setMenuOpen(false); openCart(); }}
                   className="type-label text-foreground-muted tracking-widest hover:text-accent transition-colors"
                 >
-                  BAG (0)
-                </Link>
+                  BAG ({mounted ? itemCount : 0})
+                </button>
               </motion.div>
             </nav>
           </motion.div>
