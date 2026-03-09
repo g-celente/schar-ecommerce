@@ -46,14 +46,16 @@ export function CartSummary({ onClose }: CartSummaryProps) {
         Taxes and shipping calculated at checkout
       </p>
 
-      {/* Checkout CTA */}
-      <Link
-        href={ROUTES.cart}
-        onClick={onClose}
-        className="w-full block text-center bg-foreground text-background type-label tracking-[0.15em] py-4 hover:bg-accent hover:text-foreground transition-colors"
-      >
-        CHECKOUT
-      </Link>
+      {/* Drawer CTA — only shown when inside the drawer (onClose is provided) */}
+      {onClose && (
+        <Link
+          href={ROUTES.cart}
+          onClick={onClose}
+          className="w-full block text-center bg-foreground text-background type-label tracking-[0.15em] py-4 hover:bg-accent hover:text-foreground transition-colors"
+        >
+          VIEW BAG &amp; CHECKOUT
+        </Link>
+      )}
 
       <Link
         href={ROUTES.products}
