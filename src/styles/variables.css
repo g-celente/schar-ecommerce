@@ -98,6 +98,39 @@
   --z-dropdown: 100;
   --z-sticky:   200;
   --z-overlay:  300;
+  --z-drawer:   350;
   --z-modal:    400;
   --z-toast:    500;
+}
+
+/* ─── Light theme overrides ───────────────────────────────────────────────── */
+/*
+ * Streetwear / skate light palette:
+ *   Pure paper-white canvas — clean like fresh grip tape
+ *   Near-black type        — maximum contrast, zine/magazine feel
+ *   Vivid red accent       — Supreme / Thrasher energy, used sparingly
+ */
+html.light {
+  --background:  #ffffff;          /* pure white — clean paper / skate zine */
+  --surface:     #f5f5f5;          /* off-white for cards / panels */
+  --surface-2:   #ebebeb;          /* hover / active surfaces */
+  --surface-3:   #e0e0e0;          /* inset wells */
+
+  --foreground:         #0d0d0d;   /* near-black — bold editorial type */
+  --foreground-muted:   #5a5a5a;   /* secondary labels */
+  --foreground-subtle:  #9a9a9a;   /* disabled / placeholder */
+
+  --accent:             #e8000d;   /* vivid red — skate brand identity */
+  --accent-foreground:  #ffffff;   /* white on red */
+  --white:              #ffffff;
+
+  --border:        #e2e2e2;        /* thin architectural hairlines */
+  --border-strong: #bebebe;        /* stronger dividers */
+
+  --input:  #e2e2e2;
+  --ring:   #e8000d;               /* red focus ring */
+
+  --overlay-sm: rgb(0 0 0 / 0.06);
+  --overlay:    rgb(0 0 0 / 0.22);
+  --overlay-lg: rgb(0 0 0 / 0.50);
 }

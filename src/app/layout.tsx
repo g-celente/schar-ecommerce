@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { CartDrawer } from "@/features/cart/components/CartDrawer";
 import { CartSync } from "@/features/cart/components/CartSync";
 import { AuthProvider } from "@/features/auth/components/AuthProvider";
+import { ThemeProvider } from "@/features/theme/ThemeProvider";
 import { SITE_NAME, SITE_DESCRIPTION } from "@/lib/constants";
 import { fontVariables } from "@/lib/fonts";
 
@@ -32,14 +33,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="pt-BR" className="light" suppressHydrationWarning>
+      <head>
+        {/* Blocking script: reads saved theme before first paint to prevent flash */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('schar-theme');if(t==='light'||t==='dark'){document.documentElement.classList.remove('dark','light');document.documentElement.classList.add(t);}}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body className={`${fontVariables} antialiased flex min-h-dvh flex-col bg-background text-foreground`}>
         <AuthProvider>
-          <CartSync />
-          <Navbar />
-          <CartDrawer />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <ThemeProvider>
+            <CartSync />
+            <Navbar />
+            <CartDrawer />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </ThemeProvider>
         </AuthProvider>
       </body>
     </html>

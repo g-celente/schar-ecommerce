@@ -41,7 +41,7 @@ export function HeroSection() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(to top, #0a0a0a 0%, rgba(10,10,10,0.7) 40%, rgba(10,10,10,0.15) 100%)",
+            `linear-gradient(to top, var(--background) 0%, rgba(10,10,10,0.7) 40%, rgba(10,10,10,0.15) 100%)`,
           opacity: overlayOpacity,
         }}
         aria-hidden="true"
@@ -67,7 +67,7 @@ export function HeroSection() {
       >
         <span className="h-px w-8 bg-accent/60" />
         <span className="type-label text-accent/80 tracking-[0.2em]">
-          Spring Drop — 2026
+          Drop Primavera — 2026
         </span>
         <span className="h-px w-8 bg-accent/60" />
       </motion.div>
@@ -100,9 +100,9 @@ export function HeroSection() {
         animate={isInView ? "visible" : "hidden"}
         transition={{ delay: 0.65 }}
       >
-        Limited quantities. No restock.
+        Peças limitadas. Sem reposição.
         <br />
-        Ships worldwide in 48 hours.
+        Envio mundial em 48 horas.
       </motion.p>
 
       {/* ── CTA ── */}
@@ -117,7 +117,7 @@ export function HeroSection() {
           href={ROUTES.products}
           className="group relative overflow-hidden rounded-none border border-white bg-white px-10 py-4 type-label text-black tracking-[0.18em] transition-colors duration-300 hover:bg-transparent hover:text-white"
         >
-          <span className="relative z-10">SHOP DROP</span>
+          <span className="relative z-10">COMPRAR DROP</span>
           <span className="absolute inset-0 -translate-x-full bg-white/10 transition-transform duration-500 group-hover:translate-x-0" />
         </Link>
 
@@ -125,7 +125,7 @@ export function HeroSection() {
           href="#featured"
           className="type-label text-foreground-muted tracking-[0.15em] underline-offset-4 hover:text-accent hover:underline transition-colors duration-200"
         >
-          LEARN MORE
+          SAIBA MAIS
         </Link>
       </motion.div>
 
@@ -142,7 +142,7 @@ export function HeroSection() {
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
         >
-          <span className="type-label text-foreground-subtle tracking-[0.15em]">SCROLL</span>
+          <span className="type-label text-foreground-subtle tracking-[0.15em]">ROLAR</span>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M8 3v10M3 9l5 4 5-4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="text-foreground-subtle" />
           </svg>

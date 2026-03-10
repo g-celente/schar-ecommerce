@@ -8,12 +8,13 @@ import { Container } from "@/components/ui/Container";
 import { ROUTES, SITE_NAME } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { useCartStore } from "@/features/cart/store/cart.store";
+import { ThemeToggle } from "@/features/theme/ThemeToggle";
 
 const NAV_LINKS = [
-  { label: "STORE", href: ROUTES.products },
-  { label: "DROPS", href: "/drops" },
-  { label: "ABOUT", href: "/about" },
-  { label: "CONTACT", href: "/contact" },
+  { label: "LOJA", href: ROUTES.products },
+  { label: "DROPS", href: ROUTES.drops },
+  { label: "SOBRE", href: ROUTES.about },
+  { label: "CONTATO", href: ROUTES.contact },
 ];
 
 export function Navbar() {
@@ -55,10 +56,13 @@ export function Navbar() {
             className="flex h-16 items-center justify-between md:h-[72px]"
             aria-label="Main navigation"
           >
-            {/* â”€â”€ Logo â”€â”€ */}
+            {/* ── Logo ── */}
             <Link
               href={ROUTES.home}
-              className="type-label text-white tracking-[0.3em] text-base font-bold hover:opacity-70 transition-opacity"
+              className={cn(
+                "type-label tracking-[0.3em] text-base font-bold hover:opacity-70 transition-all duration-300",
+                scrolled ? "text-foreground" : "text-white"
+              )}
               onClick={() => setMenuOpen(false)}
             >
               {SITE_NAME}
@@ -78,8 +82,9 @@ export function Navbar() {
               ))}
             </ul>
 
-            {/* â”€â”€ Desktop actions â”€â”€ */}
+            {/* ── Desktop actions ── */}
             <div className="hidden md:flex items-center gap-5">
+              <ThemeToggle />
               {isLoggedIn ? (
                 <>
                   <Link
@@ -119,15 +124,16 @@ export function Navbar() {
               </button>
             </div>
 
-            {/* â”€â”€ Mobile: cart + hamburger â”€â”€ */}
-            <div className="flex items-center gap-4 md:hidden">
+            {/* ── Mobile: sacola + hamburger ── */}
+            <div className="flex items-center gap-3 md:hidden">
+              <ThemeToggle />
               <button
                 type="button"
                 onClick={openCart}
-                aria-label={`Open shopping bag, ${mounted ? itemCount : 0} items`}
+                aria-label={`Abrir sacola, ${mounted ? itemCount : 0} itens`}
                 className="relative type-label text-foreground-muted tracking-widest transition-colors hover:text-accent"
               >
-                BAG
+                SACOLA
                 {mounted && itemCount > 0 && (
                   <span className="absolute -top-1.5 -right-2.5 w-4 h-4 flex items-center justify-center rounded-full bg-foreground text-background text-[0.5rem] font-bold">
                     {itemCount > 9 ? "9+" : itemCount}
@@ -205,19 +211,38 @@ export function Navbar() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.45 }}
               >
-                <Link
-                  href={ROUTES.login}
-                  onClick={() => setMenuOpen(false)}
-                  className="type-label text-foreground-muted tracking-widest hover:text-accent transition-colors"
-                >
-                  ACCOUNT
-                </Link>
+                {isLoggedIn ? (
+                  <>
+                    <Link
+                      href={ROUTES.account}
+                      onClick={() => setMenuOpen(false)}
+                      className="type-label text-foreground-muted tracking-widest hover:text-accent transition-colors"
+                    >
+                      {session?.user?.name?.split(" ")[0]?.toUpperCase() ?? "CONTA"}
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => { setMenuOpen(false); signOut({ callbackUrl: ROUTES.home }); }}
+                      className="type-label text-foreground-subtle tracking-widest hover:text-foreground transition-colors"
+                    >
+                      SAIR
+                    </button>
+                  </>
+                ) : (
+                  <Link
+                    href={ROUTES.login}
+                    onClick={() => setMenuOpen(false)}
+                    className="type-label text-foreground-muted tracking-widest hover:text-accent transition-colors"
+                  >
+                    CONTA
+                  </Link>
+                )}
                 <button
                   type="button"
                   onClick={() => { setMenuOpen(false); openCart(); }}
                   className="type-label text-foreground-muted tracking-widest hover:text-accent transition-colors"
                 >
-                  BAG ({mounted ? itemCount : 0})
+                  SACOLA ({mounted ? itemCount : 0})
                 </button>
               </motion.div>
             </nav>
