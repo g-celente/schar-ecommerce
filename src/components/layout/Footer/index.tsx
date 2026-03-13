@@ -4,17 +4,25 @@ import { ROUTES, SITE_NAME } from "@/lib/constants";
 
 const footerLinks = [
   {
-    title: "Shop",
+    title: "Loja",
     links: [
-      { label: "All Products", href: ROUTES.products },
-      { label: "Cart", href: ROUTES.cart },
+      { label: "Todos os Produtos", href: ROUTES.products },
+      { label: "Drops", href: ROUTES.drops },
+      { label: "Sacola", href: ROUTES.cart },
     ],
   },
   {
-    title: "Account",
+    title: "Empresa",
     links: [
-      { label: "Sign in", href: ROUTES.login },
-      { label: "Create account", href: ROUTES.register },
+      { label: "Sobre", href: ROUTES.about },
+      { label: "Contato", href: ROUTES.contact },
+    ],
+  },
+  {
+    title: "Conta",
+    links: [
+      { label: "Entrar", href: ROUTES.login },
+      { label: "Criar conta", href: ROUTES.register },
     ],
   },
 ];
@@ -23,25 +31,25 @@ export function Footer() {
   return (
     <footer className="mt-auto border-t border-border bg-background">
       <Container>
-        <div className="grid grid-cols-1 gap-8 py-12 sm:grid-cols-3">
+        <div className="grid grid-cols-2 gap-8 py-12 sm:grid-cols-4">
           {/* Brand column */}
-          <div>
-            <p className="text-base font-bold">{SITE_NAME}</p>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Premium products crafted for everyday life.
+          <div className="col-span-2 sm:col-span-1">
+            <p className="type-label tracking-[0.3em] font-bold text-foreground">{SITE_NAME}</p>
+            <p className="mt-3 type-small text-foreground-muted max-w-[180px]">
+              Moda de rua limitada. Cada peça é um drop.
             </p>
           </div>
 
           {/* Link columns */}
           {footerLinks.map((group) => (
             <div key={group.title}>
-              <p className="text-sm font-semibold">{group.title}</p>
-              <ul className="mt-3 space-y-2">
+              <p className="type-label tracking-widest text-foreground font-semibold">{group.title}</p>
+              <ul className="mt-4 space-y-3">
                 {group.links.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      className="type-small text-foreground-muted hover:text-foreground transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -53,10 +61,16 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-border py-6 text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} {SITE_NAME}. All rights reserved.
+        <div className="border-t border-border py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-center">
+          <p className="type-small text-foreground-subtle">
+            © {new Date().getFullYear()} {SITE_NAME}. Todos os direitos reservados.
+          </p>
+          <p className="type-small text-foreground-subtle">
+            Feito com ♥ no Brasil
+          </p>
         </div>
       </Container>
     </footer>
   );
 }
+

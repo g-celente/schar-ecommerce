@@ -60,10 +60,11 @@ export function Navbar() {
             <Link
               href={ROUTES.home}
               className={cn(
-                "type-label tracking-[0.3em] text-base font-bold hover:opacity-70 transition-all duration-300",
+                "font-display text-2xl tracking-[0.35em] leading-none hover:opacity-70 transition-all duration-300",
                 scrolled ? "text-foreground" : "text-white"
               )}
               onClick={() => setMenuOpen(false)}
+              aria-label={SITE_NAME}
             >
               {SITE_NAME}
             </Link>
