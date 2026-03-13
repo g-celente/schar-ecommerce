@@ -26,8 +26,8 @@
    */
   .type-hero {
     font-family: var(--font-bebas-neue), var(--font-display-fallback), sans-serif;
-    font-size: clamp(4.5rem, 18vw, 11rem);
-    font-weight: 400; /* Bebas Neue has only one weight */
+    font-size: clamp(2.5rem, 18vw, 11rem);
+    font-weight: 300; /* Bebas Neue has only one weight */
     line-height: 0.88;
     letter-spacing: 0.02em;
     text-transform: uppercase;
@@ -38,7 +38,7 @@
    */
   .type-display {
     font-family: var(--font-bebas-neue), var(--font-display-fallback), sans-serif;
-    font-size: clamp(3rem, 10vw, 6.5rem);
+    font-size: clamp(2rem, 10vw, 6.5rem);
     font-weight: 400;
     line-height: 0.92;
     letter-spacing: 0.02em;
@@ -51,7 +51,7 @@
    */
   .type-title {
     font-family: var(--font-space-grotesk), var(--font-heading-fallback), sans-serif;
-    font-size: clamp(1.875rem, 5vw, 3rem);
+    font-size: clamp(1.575rem, 5vw, 3rem);
     font-weight: 700;
     line-height: 1.05;
     letter-spacing: -0.025em;
