@@ -19,7 +19,7 @@ export default function ContatoPage() {
   }
 
   function openWhatsApp() {
-    const phone = "5511999999999"; // Replace with your WhatsApp number
+    const phone = "+55 41 9 9557-1279"; // Replace with your WhatsApp number
     const msg = encodeURIComponent("Olá! Vim pelo site da Schar e gostaria de falar com vocês.");
     window.open(`https://wa.me/${phone}?text=${msg}`, "_blank", "noopener,noreferrer");
   }
@@ -180,7 +180,7 @@ export default function ContatoPage() {
               </div>
               <div>
                 <p className="type-label tracking-widest text-foreground-muted mb-1">LOCALIZAÇÃO</p>
-                <p className="type-body text-foreground">São Paulo, Brasil</p>
+                <p className="type-body text-foreground">Lapa PR, Brasil</p>
               </div>
             </div>
           </div>
