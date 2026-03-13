@@ -1,19 +1,23 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { heroReveal, staggerContainer, fadeIn, viewportOnce } from "@/lib/motion";
+import { heroReveal, staggerContainer, fadeIn } from "@/lib/motion";
 import { ROUTES } from "@/lib/constants";
 
-/* ─── Animated counter (drop timer) ───────────────────────────────────────── */
 const HERO_WORDS = ["SCHAR", "DROP", "001"];
+
+// Unsplash hero — served via Next.js Image for WebP/AVIF conversion + preload
+const HERO_IMAGE_URL =
+  "https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=1800&q=85";
 
 export function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
   const isInView = useInView(containerRef, { once: true });
 
-  /* Parallax — background image moves slower than scroll */
+  // Parallax — transforms run on the compositor thread (no re-renders)
   const { scrollY } = useScroll();
   const bgY = useTransform(scrollY, [0, 600], ["0%", "25%"]);
   const overlayOpacity = useTransform(scrollY, [0, 400], [0.55, 0.82]);
@@ -24,24 +28,32 @@ export function HeroSection() {
       className="relative flex h-dvh min-h-[640px] w-full flex-col items-center justify-end overflow-hidden pb-16 md:pb-20"
       aria-label="Hero banner"
     >
-      {/* ── Background image with parallax ── */}
+      {/* ── Background image with parallax ──
+          Uses Next.js Image (priority + fill) instead of CSS backgroundImage.
+          Gains: automatic AVIF/WebP conversion, <link rel="preload">, srcSet.
+          The motion.div applies the y-transform on the compositor thread.
+          scale-[1.12] compensates for vertical parallax shift so edges stay hidden. */}
       <motion.div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=1800&q=85')",
-          y: bgY,
-          scale: 1.12, /* compensate for parallax clipping */
-        }}
+        className="absolute inset-0 will-change-transform"
+        style={{ y: bgY, scale: 1.12 }}
         aria-hidden="true"
-      />
+      >
+        <Image
+          src={HERO_IMAGE_URL}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+          draggable={false}
+        />
+      </motion.div>
 
       {/* ── Gradient overlay ── */}
       <motion.div
-        className="absolute inset-0"
+        className="absolute inset-0 will-change-[opacity]"
         style={{
-          background:
-            `linear-gradient(to top, var(--background) 0%, rgba(10,10,10,0.7) 40%, rgba(10,10,10,0.15) 100%)`,
+          background: `linear-gradient(to top, var(--background) 0%, rgba(10,10,10,0.7) 40%, rgba(10,10,10,0.15) 100%)`,
           opacity: overlayOpacity,
         }}
         aria-hidden="true"
@@ -105,7 +117,7 @@ export function HeroSection() {
         Envio mundial em 48 horas.
       </motion.p>
 
-      {/* ── CTA ── */}
+      {/* ── CTAs ── */}
       <motion.div
         className="relative z-10 mt-8 flex flex-col items-center gap-3 sm:flex-row"
         variants={fadeIn}
@@ -115,7 +127,7 @@ export function HeroSection() {
       >
         <Link
           href={ROUTES.products}
-          className="group relative overflow-hidden rounded-none border border-white bg-white px-10 py-4 type-label text-black tracking-[0.18em] transition-colors duration-300 hover:bg-transparent hover:text-white"
+          className="group relative overflow-hidden border border-white bg-white px-10 py-4 type-label text-black tracking-[0.18em] transition-colors duration-300 hover:bg-transparent hover:text-white"
         >
           <span className="relative z-10">COMPRAR DROP</span>
           <span className="absolute inset-0 -translate-x-full bg-white/10 transition-transform duration-500 group-hover:translate-x-0" />
@@ -142,9 +154,24 @@ export function HeroSection() {
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
         >
-          <span className="type-label text-foreground-subtle tracking-[0.15em]">ROLAR</span>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M8 3v10M3 9l5 4 5-4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="text-foreground-subtle" />
+          <span className="type-label text-foreground-subtle tracking-[0.15em]">
+            ROLAR
+          </span>
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M8 3v10M3 9l5 4 5-4"
+              stroke="currentColor"
+              strokeWidth="1.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-foreground-subtle"
+            />
           </svg>
         </motion.div>
       </motion.div>
