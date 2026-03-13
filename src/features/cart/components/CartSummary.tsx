@@ -20,16 +20,16 @@ export function CartSummary({ onClose }: CartSummaryProps) {
       <div className="text-center py-3 border-y border-border">
         {remainingForFreeShipping > 0 ? (
           <p className="type-small text-foreground-muted">
-            Add{" "}
+            Adicione{" "}
             <span className="text-foreground font-medium">
               {formatPrice(remainingForFreeShipping)}
             </span>{" "}
-            more for free shipping
+            para frete grátis
           </p>
         ) : (
           <p className="type-small text-foreground">
-            You qualify for{" "}
-            <span className="font-medium tracking-wide">FREE SHIPPING</span>
+            Você tem direito a{" "}
+            <span className="font-medium tracking-wide">FRETE GRÁTIS</span>
           </p>
         )}
       </div>
@@ -43,7 +43,7 @@ export function CartSummary({ onClose }: CartSummaryProps) {
       </div>
 
       <p className="type-small text-foreground-subtle">
-        Taxes and shipping calculated at checkout
+        Impostos e frete calculados no checkout
       </p>
 
       {/* Drawer CTA — only shown when inside the drawer (onClose is provided) */}
@@ -53,7 +53,7 @@ export function CartSummary({ onClose }: CartSummaryProps) {
           onClick={onClose}
           className="w-full block text-center bg-foreground text-background type-label tracking-[0.15em] py-4 hover:bg-accent hover:text-foreground transition-colors"
         >
-          VIEW BAG &amp; CHECKOUT
+          VER SACOLA E FINALIZAR
         </Link>
       )}
 
@@ -62,7 +62,7 @@ export function CartSummary({ onClose }: CartSummaryProps) {
         onClick={onClose}
         className="w-full block text-center border border-border type-label tracking-[0.15em] py-3 text-foreground-muted hover:text-foreground hover:border-border-strong transition-colors"
       >
-        CONTINUE SHOPPING
+        CONTINUAR COMPRANDO
       </Link>
     </div>
   );

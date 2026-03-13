@@ -54,7 +54,7 @@ export function CartDrawer() {
             key="cart-drawer"
             role="dialog"
             aria-modal="true"
-            aria-label="Shopping bag"
+            aria-label="Sacola de compras"
             initial={{ x: "100%" }}
             animate={{ x: "0%" }}
             exit={{ x: "100%" }}
@@ -64,7 +64,7 @@ export function CartDrawer() {
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-5 border-b border-border shrink-0">
               <h2 className="type-label tracking-[0.2em]">
-                BAG ({itemCount})
+                SACOLA ({itemCount})
               </h2>
               <div className="flex items-center gap-4">
                 {items.length > 0 && (
@@ -72,15 +72,15 @@ export function CartDrawer() {
                     type="button"
                     onClick={clearCart}
                     className="type-label text-[0.6rem] tracking-[0.15em] text-foreground-subtle hover:text-foreground transition-colors"
-                    aria-label="Clear all items"
+                    aria-label="Limpar todos os itens"
                   >
-                    CLEAR ALL
+                    LIMPAR TUDO
                   </button>
                 )}
                 <button
                   type="button"
                   onClick={closeCart}
-                  aria-label="Close shopping bag"
+                  aria-label="Fechar sacola"
                   className="w-8 h-8 flex items-center justify-center text-foreground-muted hover:text-foreground transition-colors"
                 >
                   ✕
@@ -92,9 +92,9 @@ export function CartDrawer() {
             <div className="flex-1 overflow-y-auto px-6 no-scrollbar">
               {items.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full gap-4 py-20 text-center">
-                  <p className="type-heading text-foreground-muted">YOUR BAG IS EMPTY</p>
+                  <p className="type-heading text-foreground-muted">SUA SACOLA ESTÁ VAZIA</p>
                   <p className="type-small text-foreground-subtle max-w-[220px]">
-                    Add products to your bag to see them here.
+                    Adicione produtos à sua sacola para vê-los aqui.
                   </p>
                 </div>
               ) : (

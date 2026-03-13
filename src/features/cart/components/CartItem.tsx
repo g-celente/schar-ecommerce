@@ -58,7 +58,7 @@ export function CartItem({ item }: CartItemProps) {
             </Link>
             {item.size && (
               <p className="type-label text-foreground-subtle tracking-widest mt-0.5">
-                SIZE: {item.size}
+                TAMANHO: {item.size}
               </p>
             )}
           </div>
@@ -79,7 +79,7 @@ export function CartItem({ item }: CartItemProps) {
             <button
               type="button"
               onClick={() => updateQuantity(item.key, item.quantity - 1)}
-              aria-label="Decrease quantity"
+              aria-label="Diminuir quantidade"
               className="w-8 h-8 flex items-center justify-center type-label text-foreground-muted hover:text-foreground transition-colors"
             >
               −
@@ -90,7 +90,7 @@ export function CartItem({ item }: CartItemProps) {
             <button
               type="button"
               onClick={() => updateQuantity(item.key, item.quantity + 1)}
-              aria-label="Increase quantity"
+              aria-label="Aumentar quantidade"
               className="w-8 h-8 flex items-center justify-center type-label text-foreground-muted hover:text-foreground transition-colors"
             >
               +
@@ -103,7 +103,7 @@ export function CartItem({ item }: CartItemProps) {
             aria-label={`Remove ${item.product.name}`}
             className="type-label text-[0.6rem] tracking-[0.15em] text-foreground-subtle hover:text-foreground transition-colors"
           >
-            REMOVE
+            REMOVER
           </button>
         </div>
       </div>
