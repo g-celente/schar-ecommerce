@@ -4,8 +4,8 @@ import { LoginForm } from "@/features/auth/components/LoginForm";
 import { SITE_NAME } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: `Sign In`,
-  description: `Sign in to your ${SITE_NAME} account`,
+  title: `Entrar`,
+  description: `Entre na sua conta ${SITE_NAME}`,
 };
 
 export default function LoginPage() {
@@ -16,7 +16,7 @@ export default function LoginPage() {
           <p className="type-label tracking-[0.3em] text-foreground-muted">
             {SITE_NAME.toUpperCase()}
           </p>
-          <h1 className="type-display text-3xl">SIGN IN</h1>
+          <h1 className="type-display text-3xl">ENTRAR</h1>
         </div>
         <Suspense>
           <LoginForm />

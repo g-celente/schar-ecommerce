@@ -3,8 +3,8 @@ import { RegisterForm } from "@/features/auth/components/RegisterForm";
 import { SITE_NAME } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: `Create Account`,
-  description: `Join ${SITE_NAME} and start shopping today`,
+  title: `Criar Conta`,
+  description: `Junte-se à ${SITE_NAME} e comece a comprar hoje`,
 };
 
 export default function RegisterPage() {
@@ -15,7 +15,7 @@ export default function RegisterPage() {
           <p className="type-label tracking-[0.3em] text-foreground-muted">
             {SITE_NAME.toUpperCase()}
           </p>
-          <h1 className="type-display text-3xl">CREATE ACCOUNT</h1>
+          <h1 className="type-display text-3xl">CRIAR CONTA</h1>
         </div>
         <RegisterForm />
       </div>

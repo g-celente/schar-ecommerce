@@ -30,7 +30,7 @@ export function LoginForm() {
       });
 
       if (result?.error) {
-        setError("Invalid email or password.");
+        setError("E-mail ou senha inválidos.");
       } else {
         router.push(callbackUrl);
         router.refresh();
@@ -73,13 +73,13 @@ export function LoginForm() {
             "focus:outline-none focus:border-border-strong",
             "disabled:opacity-50"
           )}
-          placeholder="you@example.com"
+          placeholder="voce@exemplo.com"
         />
       </div>
 
       <div className="space-y-1">
         <label htmlFor="password" className="type-label tracking-widest text-foreground-muted block">
-          PASSWORD
+          SENHA
         </label>
         <input
           id="password"
@@ -103,7 +103,7 @@ export function LoginForm() {
         disabled={isPending}
         className="w-full bg-foreground text-background type-label tracking-[0.2em] py-4 hover:bg-accent hover:text-foreground transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {isPending ? "SIGNING IN…" : "SIGN IN"}
+        {isPending ? "ENTRANDO…" : "ENTRAR"}
       </button>
 
       {/* Google */}
@@ -113,7 +113,7 @@ export function LoginForm() {
         <div className="flex-1 h-px bg-border" />
       </div>
 
-      <button
+      {/* <button
         type="button"
         onClick={handleGoogleSignIn}
         disabled={isPending}
@@ -137,16 +137,16 @@ export function LoginForm() {
             fill="#EA4335"
           />
         </svg>
-        CONTINUE WITH GOOGLE
-      </button>
+        CONTINUAR COM GOOGLE
+      </button> */}
 
       <p className="text-center type-small text-foreground-subtle">
-        No account?{" "}
+        Não tem conta?{" "}
         <Link
           href={ROUTES.register}
           className="text-foreground-muted hover:text-foreground transition-colors"
         >
-          Create one
+          Criar uma
         </Link>
       </p>
     </form>

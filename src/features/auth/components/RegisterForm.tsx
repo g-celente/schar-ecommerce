@@ -22,7 +22,7 @@ export function RegisterForm() {
     const confirm = (form.elements.namedItem("confirm") as HTMLInputElement).value;
 
     if (password !== confirm) {
-      setError("Passwords do not match.");
+      setError("As senhas não coincidem.");
       return;
     }
 
@@ -37,7 +37,7 @@ export function RegisterForm() {
       const data: { error?: string } = await res.json();
 
       if (!res.ok) {
-        setError(data.error ?? "Registration failed. Try again.");
+        setError(data.error ?? "Cadastro falhou. Tente novamente.");
         return;
       }
 
@@ -49,7 +49,7 @@ export function RegisterForm() {
       });
 
       if (result?.error) {
-        setError("Account created but sign-in failed. Please log in.");
+        setError("Conta criada, mas login falhou. Por favor, entre manualmente.");
         router.push(ROUTES.login);
       } else {
         router.push(ROUTES.home);
@@ -71,7 +71,7 @@ export function RegisterForm() {
 
       <div className="space-y-1">
         <label htmlFor="name" className="type-label tracking-widest text-foreground-muted block">
-          NAME
+          NOME
         </label>
         <input
           id="name"
@@ -84,7 +84,7 @@ export function RegisterForm() {
             "w-full bg-surface-2 border border-border px-4 py-3 type-body text-foreground",
             "placeholder:text-foreground-subtle focus:outline-none focus:border-border-strong disabled:opacity-50"
           )}
-          placeholder="Your name"
+          placeholder="Seu nome"
         />
       </div>
 
@@ -103,13 +103,13 @@ export function RegisterForm() {
             "w-full bg-surface-2 border border-border px-4 py-3 type-body text-foreground",
             "placeholder:text-foreground-subtle focus:outline-none focus:border-border-strong disabled:opacity-50"
           )}
-          placeholder="you@example.com"
+          placeholder="voce@exemplo.com"
         />
       </div>
 
       <div className="space-y-1">
         <label htmlFor="password" className="type-label tracking-widest text-foreground-muted block">
-          PASSWORD
+          SENHA
         </label>
         <input
           id="password"
@@ -123,13 +123,13 @@ export function RegisterForm() {
             "w-full bg-surface-2 border border-border px-4 py-3 type-body text-foreground",
             "placeholder:text-foreground-subtle focus:outline-none focus:border-border-strong disabled:opacity-50"
           )}
-          placeholder="Min. 6 characters"
+          placeholder="Mín. 6 caracteres"
         />
       </div>
 
       <div className="space-y-1">
         <label htmlFor="confirm" className="type-label tracking-widest text-foreground-muted block">
-          CONFIRM PASSWORD
+          CONFIRMAR SENHA
         </label>
         <input
           id="confirm"
@@ -142,7 +142,7 @@ export function RegisterForm() {
             "w-full bg-surface-2 border border-border px-4 py-3 type-body text-foreground",
             "placeholder:text-foreground-subtle focus:outline-none focus:border-border-strong disabled:opacity-50"
           )}
-          placeholder="Repeat password"
+          placeholder="Repita a senha"
         />
       </div>
 
@@ -151,16 +151,16 @@ export function RegisterForm() {
         disabled={isPending}
         className="w-full bg-foreground text-background type-label tracking-[0.2em] py-4 hover:bg-accent hover:text-foreground transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {isPending ? "CREATING ACCOUNT…" : "CREATE ACCOUNT"}
+        {isPending ? "CRIANDO CONTA…" : "CRIAR CONTA"}
       </button>
 
       <p className="text-center type-small text-foreground-subtle">
-        Already have an account?{" "}
+        Já tem uma conta?{" "}
         <Link
           href={ROUTES.login}
           className="text-foreground-muted hover:text-foreground transition-colors"
         >
-          Sign in
+          Entrar
         </Link>
       </p>
     </form>
