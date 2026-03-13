@@ -4,7 +4,24 @@ import { Container } from "@/components/ui/Container";
 import { ProductGallery } from "@/features/product/components/ProductGallery";
 import { ProductInfo } from "@/features/product/components/ProductInfo";
 import { RelatedProducts } from "@/features/product/components/RelatedProducts";
-import { getProductBySlug, getRelatedProducts } from "@/lib/mock/products";
+import {
+  ALL_PRODUCTS,
+  getProductBySlug,
+  getRelatedProducts,
+} from "@/lib/mock/products";
+
+/**
+ * Pre-render every available product page at build time.
+ * TTFB drops to near-zero — no server compute per request.
+ */
+export async function generateStaticParams() {
+  return ALL_PRODUCTS.filter((p) => !p.comingSoon).map((p) => ({
+    id: p.slug,
+  }));
+}
+
+// Since all params are known at build time, mark as fully static.
+export const dynamic = "force-static";
 
 interface ProductDetailPageProps {
   params: Promise<{ id: string }>;

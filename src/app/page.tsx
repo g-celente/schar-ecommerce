@@ -4,6 +4,9 @@ import { FeaturedDropSection } from "@/features/home/components/FeaturedDropSect
 import { CategoryPreviewSection } from "@/features/home/components/CategoryPreviewSection";
 import { NewsletterSection } from "@/features/home/components/NewsletterSection";
 
+// Home page uses only static data — pre-render once and never revalidate.
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Home",
   description:
