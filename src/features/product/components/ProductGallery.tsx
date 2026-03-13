@@ -83,7 +83,8 @@ export function ProductGallery({ images, productName }: ProductGalleryProps) {
               transition={{ duration: 0.3, ease: "easeInOut" }}
             >
               <motion.div
-                className="absolute inset-0"
+                // will-change hints GPU to promote this layer before zoom starts
+                className="absolute inset-0 will-change-transform"
                 animate={
                   zoomed
                     ? {
