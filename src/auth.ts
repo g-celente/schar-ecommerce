@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 import authConfig from "./auth.config";
-import { getUserByEmail, verifyPassword } from "@/lib/mock-users";
+import { getUserByEmail, verifyPassword } from "@/lib/db/users";
 import { z } from "zod";
 
 const CredentialsSchema = z.object({
@@ -24,10 +24,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (!parsed.success) return null;
 
         const { email, password } = parsed.data;
-        const user = getUserByEmail(email);
+        const user = await getUserByEmail(email);
         if (!user) return null;
 
-        const isValid = await verifyPassword(password, user.passwordHash);
+        const isValid = await verifyPassword(password, user.password);
         if (!isValid) return null;
 
         return {

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createUser } from "@/lib/mock-users";
+import { createUser } from "@/lib/db/users";
 import { z } from "zod";
 
 const RegisterSchema = z.object({
