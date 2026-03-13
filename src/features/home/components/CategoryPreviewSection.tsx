@@ -2,44 +2,57 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  fadeUp,
-  staggerContainer,
-  clipWipe,
-  viewportOnce,
-} from "@/lib/motion";
+import { fadeUp, staggerContainer, viewportOnce } from "@/lib/motion";
 import { Container } from "@/components/ui/Container";
 import { CATEGORIES } from "@/lib/mock/products";
 import { ROUTES } from "@/lib/constants";
 
-/* Each category card has a subtle pan-zoom + overlay on hover */
-function CategoryCard({
-  category,
-}: {
-  category: (typeof CATEGORIES)[number];
-}) {
-  const [hovered, setHovered] = useState(false);
+type Category = (typeof CATEGORIES)[number];
+
+/**
+ * CategoryCard — hover effects are pure CSS (no useState).
+ * Uses Tailwind group-hover utilities for image scale, overlay, and CTA reveal.
+ * The parent motion.div still handles the viewport entrance animation.
+ */
+function CategoryCard({ category }: { category: Category }) {
+  const isComingSoon = "comingSoon" in category && category.comingSoon;
+
+  if (isComingSoon) {
+    return (
+      <motion.div variants={fadeUp} className="relative overflow-hidden">
+        <div className="relative aspect-editorial bg-surface-2 border border-border flex items-center justify-center overflow-hidden">
+          <div
+            className="absolute inset-0 opacity-[0.04]"
+            style={{
+              backgroundImage:
+                "linear-gradient(var(--foreground) 1px, transparent 1px), linear-gradient(90deg, var(--foreground) 1px, transparent 1px)",
+              backgroundSize: "40px 40px",
+            }}
+            aria-hidden="true"
+          />
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center">
+            <span className="type-display text-[clamp(2.5rem,7vw,4.5rem)] text-foreground-subtle">
+              {category.name}
+            </span>
+            <span className="type-label text-foreground-subtle tracking-[0.2em]">
+              EM BREVE
+            </span>
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
 
   return (
-    <motion.div
-      variants={fadeUp}
-      className="group relative overflow-hidden"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
+    <motion.div variants={fadeUp} className="group relative overflow-hidden">
       <Link
         href={`${ROUTES.products}?category=${category.slug}`}
         className="block relative aspect-editorial"
-        aria-label={`Shop ${category.name}`}
+        aria-label={`Explorar ${category.name}`}
       >
-        {/* Image */}
-        <motion.div
-          className="absolute inset-0"
-          animate={{ scale: hovered ? 1.07 : 1 }}
-          transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
-        >
+        {/* Image — CSS scale on hover, GPU composited */}
+        <div className="absolute inset-0 will-change-transform transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[1.07]">
           <Image
             src={category.image}
             alt={category.name}
@@ -47,47 +60,32 @@ function CategoryCard({
             sizes="(max-width: 768px) 100vw, 33vw"
             className="object-cover"
           />
-        </motion.div>
+        </div>
 
-        {/* Persistent bottom gradient */}
+        {/* Bottom gradient — always visible */}
         <div className="absolute inset-0 overlay-bottom" aria-hidden="true" />
 
-        {/* Hover full overlay */}
-        <motion.div
-          className="absolute inset-0 bg-black"
-          animate={{ opacity: hovered ? 0.35 : 0 }}
-          transition={{ duration: 0.3 }}
+        {/* Hover overlay — CSS opacity */}
+        <div
+          className="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 group-hover:opacity-[0.35]"
           aria-hidden="true"
         />
 
         {/* Content */}
         <div className="absolute bottom-0 left-0 right-0 z-10 p-5 md:p-6">
-          <motion.p
-            className="type-label text-foreground-muted tracking-[0.18em] mb-1"
-            animate={{ y: hovered ? -4 : 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            {category.count} PIECES
-          </motion.p>
-          <motion.h3
-            className="type-display text-[clamp(2.5rem,7vw,4.5rem)] text-white"
-            animate={{ y: hovered ? -4 : 0 }}
-            transition={{ duration: 0.35, delay: 0.03 }}
-          >
+          <p className="type-label text-foreground-muted tracking-[0.18em] mb-1 transition-transform duration-300 group-hover:-translate-y-1">
+            {category.count} PEÇAS
+          </p>
+          <h3 className="type-display text-[clamp(2.5rem,7vw,4.5rem)] text-white transition-transform duration-[350ms] delay-[30ms] group-hover:-translate-y-1">
             {category.name}
-          </motion.h3>
+          </h3>
 
-          {/* CTA — slides up on hover */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: hovered ? 1 : 0, y: hovered ? 0 : 12 }}
-            transition={{ duration: 0.3 }}
-            className="mt-3"
-          >
+          {/* CTA — slides up on hover, CSS only */}
+          <div className="mt-3 translate-y-3 opacity-0 transition-[transform,opacity] duration-300 group-hover:translate-y-0 group-hover:opacity-100">
             <span className="type-label text-accent tracking-[0.18em] underline underline-offset-4">
-              EXPLORE →
+              EXPLORAR →
             </span>
-          </motion.div>
+          </div>
         </div>
       </Link>
     </motion.div>
@@ -96,12 +94,8 @@ function CategoryCard({
 
 export function CategoryPreviewSection() {
   return (
-    <section
-      className="section bg-surface"
-      aria-label="Shop by category"
-    >
+    <section className="section bg-surface" aria-label="Explorar por categoria">
       <Container>
-        {/* Header */}
         <motion.div
           className="mb-10"
           variants={staggerContainer}
@@ -113,14 +107,13 @@ export function CategoryPreviewSection() {
             variants={fadeUp}
             className="type-label text-foreground-muted tracking-[0.2em] mb-2"
           >
-            SHOP BY
+            EXPLORAR POR
           </motion.p>
           <motion.h2 variants={fadeUp} className="type-title text-foreground">
-            CATEGORY
+            CATEGORIA
           </motion.h2>
         </motion.div>
 
-        {/* Category grid — 1 col mobile, 3 col md+ */}
         <motion.div
           className="grid grid-cols-1 gap-3 md:grid-cols-3"
           variants={staggerContainer}

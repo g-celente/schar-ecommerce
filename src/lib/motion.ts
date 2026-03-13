@@ -70,12 +70,13 @@ export const staggerContainerFast: Variants = {
 };
 
 /* ─── Scale in ───────────────────────────────────────────────────────────── */
+// Uses opacity + scale — both GPU composited, no layout thrashing.
 export const scaleIn: Variants = {
-  hidden: { opacity: 0, scale: 0.92 },
+  hidden: { opacity: 0, scale: 0.94 },
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.55, ease: [0.34, 1.56, 0.64, 1] },
+    transition: { duration: 0.5, ease: [0.19, 1, 0.22, 1] },
   },
 };
 
