@@ -9,6 +9,8 @@ export const metadata: Metadata = {
     "SCHAR nasce de um sonho. Arte de rua, cultura urbana e autenticidade em cada estampa. Conheça nossa história.",
 };
 
+const IMAGEM = "/brand/sobre.jpeg";
+
 export default function SobrePage() {
   return (
     <main className="min-h-dvh pt-16 md:pt-[72px]">
@@ -54,11 +56,11 @@ export default function SobrePage() {
           {/* Visual block */}
           <div className="relative aspect-[3/4] bg-surface-2 overflow-hidden">
             <div
-              className="absolute inset-0 opacity-[0.06]"
+              className="absolute inset-0"
               style={{
-                backgroundImage:
-                  "linear-gradient(var(--foreground) 1px, transparent 1px), linear-gradient(90deg, var(--foreground) 1px, transparent 1px)",
-                backgroundSize: "48px 48px",
+                backgroundImage: `url(${IMAGEM})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center"
               }}
               aria-hidden="true"
             />

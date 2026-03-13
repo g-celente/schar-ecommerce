@@ -21,7 +21,32 @@ export const DROP_001_PRODUCTS: Product[] = [
     images: [
       {
         id: "s001-a",
-        url: "/products/tee-001/main.jpeg",
+        url: "/products/tee-001/front.jpeg",
+        alt: "SCHAR TEE 001 — DROP 001",
+      },
+      {
+        id: "s002-a",
+        url: "/products/tee-001/back.jpeg",
+        alt: "SCHAR TEE 001 — DROP 001",
+      },
+      {
+        id: "s003-a",
+        url: "/products/tee-001/image1.jpeg",
+        alt: "SCHAR TEE 001 — DROP 001",
+      },
+      {
+        id: "s004-a",
+        url: "/products/tee-001/image2.jpeg",
+        alt: "SCHAR TEE 001 — DROP 001",
+      },
+      {
+        id: "s005-a",
+        url: "/products/tee-001/image3.jpeg",
+        alt: "SCHAR TEE 001 — DROP 001",
+      },
+      {
+        id: "s006-a",
+        url: "/products/tee-001/image4.jpeg",
         alt: "SCHAR TEE 001 — DROP 001",
       },
     ],
@@ -41,8 +66,13 @@ export const DROP_001_PRODUCTS: Product[] = [
     price: 189,
     images: [
       {
-        id: "s002-a",
-        url: "/products/tee-002/main.jpeg",
+        id: "s001-b",
+        url: "/products/tee-002/front.jpeg",
+        alt: "SCHAR TEE 002 — DROP 001",
+      },
+      {
+        id: "s002-b",
+        url: "/products/tee-002/back.jpeg",
         alt: "SCHAR TEE 002 — DROP 001",
       },
     ],
@@ -52,49 +82,7 @@ export const DROP_001_PRODUCTS: Product[] = [
     stock: 20,
     rating: 5,
     reviewCount: 0,
-  },
-  {
-    id: "schar-003",
-    slug: "tee-003",
-    name: "TEE 003",
-    description:
-      "Camiseta oversized premium. Modelagem estruturada com drop shoulder. Tecido de alta gramatura — toque macio e acabamento impecável. Qualidade que você sente no primeiro contato e percebe na durabilidade. Estampa exclusiva DROP 001.",
-    price: 199,
-    images: [
-      {
-        id: "s003-a",
-        url: "/products/tee-003/main.jpeg",
-        alt: "SCHAR TEE 003 — DROP 001",
-      },
-    ],
-    category: { id: "cat-camisetas", name: "CAMISETAS", slug: "camisetas" },
-    tags: ["drop-1"],
-    sizes: ["P", "M", "G", "GG"],
-    stock: 20,
-    rating: 5,
-    reviewCount: 0,
-  },
-  {
-    id: "schar-004",
-    slug: "tee-004",
-    name: "TEE 004",
-    description:
-      "Camiseta oversized premium. Modelagem estruturada com drop shoulder. Tecido de alta gramatura — toque macio e acabamento impecável. Qualidade que você sente no primeiro contato e percebe na durabilidade. Estampa exclusiva DROP 001.",
-    price: 199,
-    images: [
-      {
-        id: "s004-a",
-        url: "/products/tee-004/main.jpeg",
-        alt: "SCHAR TEE 004 — DROP 001",
-      },
-    ],
-    category: { id: "cat-camisetas", name: "CAMISETAS", slug: "camisetas" },
-    tags: ["drop-1"],
-    sizes: ["P", "M", "G", "GG"],
-    stock: 20,
-    rating: 5,
-    reviewCount: 0,
-  },
+  }
 ];
 
 // ─── Coming soon — future drops ───────────────────────────────────────────────
@@ -128,37 +116,7 @@ const COMING_SOON_PRODUCTS: Product[] = [
     rating: 0,
     reviewCount: 0,
     comingSoon: true,
-  },
-  {
-    id: "cs-003",
-    slug: "drop-002-tee-c",
-    name: "DROP 002 — C",
-    description: "Em breve.",
-    price: 0,
-    images: [],
-    category: { id: "cat-camisetas", name: "CAMISETAS", slug: "camisetas" },
-    tags: [],
-    sizes: [],
-    stock: 0,
-    rating: 0,
-    reviewCount: 0,
-    comingSoon: true,
-  },
-  {
-    id: "cs-004",
-    slug: "drop-002-tee-d",
-    name: "DROP 002 — D",
-    description: "Em breve.",
-    price: 0,
-    images: [],
-    category: { id: "cat-camisetas", name: "CAMISETAS", slug: "camisetas" },
-    tags: [],
-    sizes: [],
-    stock: 0,
-    rating: 0,
-    reviewCount: 0,
-    comingSoon: true,
-  },
+  }
 ];
 
 // ─── Full catalogue ───────────────────────────────────────────────────────────
@@ -174,16 +132,16 @@ export const FEATURED_PRODUCTS: Product[] = DROP_001_PRODUCTS;
 export const CATEGORIES = [
   {
     id: "cat-camisetas",
-    name: "CAMISETAS",
+    name: "DROP 01",
     slug: "camisetas",
     // Use first product image as category hero
     image: "/products/tee-001/main.jpeg",
-    count: 4,
+    count: 2,
   },
   {
     id: "cat-moletons",
-    name: "MOLETONS",
-    slug: "moletons",
+    name: "EM BREVE",
+    slug: "EM BREVE",
     image:
       "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=900&q=80",
     count: 0,
@@ -191,8 +149,8 @@ export const CATEGORIES = [
   },
   {
     id: "cat-bones",
-    name: "BONÉS",
-    slug: "bones",
+    name: "EM BREVE",
+    slug: "EM BREVE",
     image:
       "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=900&q=80",
     count: 0,
