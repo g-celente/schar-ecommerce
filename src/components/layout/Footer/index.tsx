@@ -36,7 +36,7 @@ export function Footer() {
           <div className="col-span-2 sm:col-span-1">
             <p className="type-label tracking-[0.3em] font-bold text-foreground">{SITE_NAME}</p>
             <p className="mt-3 type-small text-foreground-muted max-w-[180px]">
-              Moda de rua limitada. Cada peça é um drop.
+              Streat wear limitada. Cada peça é um drop.
             </p>
           </div>
 

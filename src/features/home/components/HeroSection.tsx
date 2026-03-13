@@ -10,8 +10,8 @@ import { ROUTES } from "@/lib/constants";
 const HERO_WORDS = ["SCHAR", "DROP", "001"];
 
 // Unsplash hero — served via Next.js Image for WebP/AVIF conversion + preload
-const HERO_IMAGE_URL =
-  "https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=1800&q=85";
+const HERO_IMAGE_DESKTOP = "/brand/hero-desktop.webp";
+const HERO_IMAGE_MOBILE = "/brand/hero-mobile.webp";
 
 export function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
@@ -38,15 +38,22 @@ export function HeroSection() {
         style={{ y: bgY, scale: 1.12 }}
         aria-hidden="true"
       >
-        <Image
-          src={HERO_IMAGE_URL}
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-          draggable={false}
-        />
+        <picture>
+          <source
+            media="(max-width: 768px)"
+            srcSet={HERO_IMAGE_MOBILE}
+          />
+
+          <Image
+            src={HERO_IMAGE_DESKTOP}
+            alt="Schar Drop Hero"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+            draggable={false}
+          />
+        </picture>
       </motion.div>
 
       {/* ── Gradient overlay ── */}
@@ -114,7 +121,7 @@ export function HeroSection() {
       >
         Peças limitadas. Sem reposição.
         <br />
-        Envio mundial em 48 horas.
+        Envio nacional em 48 horas.
       </motion.p>
 
       {/* ── CTAs ── */}

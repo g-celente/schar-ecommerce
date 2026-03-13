@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSession, signOut } from "next-auth/react";
@@ -11,6 +12,7 @@ import { useCartStore } from "@/features/cart/store/cart.store";
 import { ThemeToggle } from "@/features/theme/ThemeToggle";
 
 const NAV_LINKS = [
+  { label: "HOME", href: ROUTES.home },
   { label: "LOJA", href: ROUTES.products },
   { label: "DROPS", href: ROUTES.drops },
   { label: "SOBRE", href: ROUTES.about },
@@ -18,6 +20,8 @@ const NAV_LINKS = [
 ];
 
 export function Navbar() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -46,7 +50,7 @@ export function Navbar() {
       <header
         className={cn(
           "fixed inset-x-0 top-0 z-[var(--z-sticky)] transition-all duration-300",
-          scrolled
+          scrolled || !isHome
             ? "border-b border-border bg-background/95 backdrop-blur-md"
             : "bg-transparent"
         )}
@@ -61,7 +65,7 @@ export function Navbar() {
               href={ROUTES.home}
               className={cn(
                 "font-display text-2xl tracking-[0.35em] leading-none hover:opacity-70 transition-all duration-300",
-                scrolled ? "text-foreground" : "text-white"
+                (scrolled || !isHome) ? "text-foreground font-semibold" : "text-white font-extrabold"
               )}
               onClick={() => setMenuOpen(false)}
               aria-label={SITE_NAME}
@@ -69,13 +73,16 @@ export function Navbar() {
               {SITE_NAME}
             </Link>
 
-            {/* â”€â”€ Desktop nav â”€â”€ */}
+            {/* â"€â"€ Desktop nav â"€â"€ */}
             <ul className="hidden md:flex items-center gap-8" role="list">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="type-label text-foreground-muted tracking-[0.15em] transition-colors hover:text-accent"
+                    className={cn(
+                      "type-label tracking-[0.15em] transition-all duration-300 hover:text-accent",
+                      (scrolled || !isHome) ? "text-foreground font-semibold" : "text-white font-extrabold"
+                    )}
                   >
                     {link.label}
                   </Link>
@@ -90,14 +97,20 @@ export function Navbar() {
                 <>
                   <Link
                     href={ROUTES.account}
-                    className="type-label text-foreground-muted tracking-[0.12em] transition-colors hover:text-accent"
+                    className={cn(
+                      "type-label tracking-[0.12em] transition-all duration-300 hover:text-accent",
+                      (scrolled || !isHome) ? "text-foreground font-semibold" : "text-white font-extrabold"
+                    )}
                   >
-                    {session.user?.name?.split(" ")[0]?.toUpperCase() ?? "ACCOUNT"}
+                    {session.user?.name?.split("")[0]?.toUpperCase() ?? "ACCOUNT"}
                   </Link>
                   <button
                     type="button"
                     onClick={() => signOut({ callbackUrl: ROUTES.home })}
-                    className="type-label text-foreground-subtle tracking-[0.12em] transition-colors hover:text-foreground"
+                    className={cn(
+                      "type-label tracking-[0.12em] transition-all duration-300 hover:text-foreground",
+                      (scrolled || !isHome) ? "text-foreground-subtle font-semibold" : "text-white/70 font-extrabold"
+                    )}
                   >
                     SIGN OUT
                   </button>
@@ -105,7 +118,10 @@ export function Navbar() {
               ) : (
                 <Link
                   href={ROUTES.login}
-                  className="type-label text-foreground-muted tracking-[0.12em] transition-colors hover:text-accent"
+                  className={cn(
+                    "type-label tracking-[0.12em] transition-all duration-300 hover:text-accent",
+                    (scrolled || !isHome) ? "text-foreground font-semibold" : "text-white font-extrabold"
+                  )}
                 >
                   ACCOUNT
                 </Link>
@@ -114,7 +130,10 @@ export function Navbar() {
                 type="button"
                 onClick={openCart}
                 aria-label={`Open shopping bag, ${mounted ? itemCount : 0} items`}
-                className="relative type-label text-foreground-muted tracking-[0.12em] transition-colors hover:text-accent"
+                className={cn(
+                  "relative type-label tracking-[0.12em] transition-all duration-300 hover:text-accent",
+                  (scrolled || !isHome) ? "text-foreground font-semibold" : "text-white font-extrabold"
+                )}
               >
                 BAG ({mounted ? itemCount : 0})
                 {mounted && itemCount > 0 && (
@@ -132,7 +151,10 @@ export function Navbar() {
                 type="button"
                 onClick={openCart}
                 aria-label={`Abrir sacola, ${mounted ? itemCount : 0} itens`}
-                className="relative type-label text-foreground-muted tracking-widest transition-colors hover:text-accent"
+                className={cn(
+                  "relative type-label tracking-widest transition-all duration-300 hover:text-accent",
+                  (scrolled || !isHome) ? "text-foreground font-semibold" : "text-white font-extrabold"
+                )}
               >
                 SACOLA
                 {mounted && itemCount > 0 && (
@@ -151,17 +173,17 @@ export function Navbar() {
                 aria-controls="mobile-menu"
               >
                 <motion.span
-                  className="block h-px w-6 bg-foreground origin-center"
+                  className={cn("block h-px w-6 origin-center transition-colors duration-300", (scrolled || !isHome) ? "bg-foreground" : "bg-white")}
                   animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 6 : 0 }}
                   transition={{ duration: 0.25 }}
                 />
                 <motion.span
-                  className="block h-px w-6 bg-foreground"
+                  className={cn("block h-px w-6 transition-colors duration-300", (scrolled || !isHome) ? "bg-foreground" : "bg-white")}
                   animate={{ opacity: menuOpen ? 0 : 1, scaleX: menuOpen ? 0 : 1 }}
                   transition={{ duration: 0.2 }}
                 />
                 <motion.span
-                  className="block h-px w-6 bg-foreground origin-center"
+                  className={cn("block h-px w-6 origin-center transition-colors duration-300", (scrolled || !isHome) ? "bg-foreground" : "bg-white")}
                   animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -6 : 0 }}
                   transition={{ duration: 0.25 }}
                 />
@@ -171,7 +193,7 @@ export function Navbar() {
         </Container>
       </header>
 
-      {/* â”€â”€ Mobile menu overlay â”€â”€ */}
+      {/* â"€â"€ Mobile menu overlay â"€â"€ */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
