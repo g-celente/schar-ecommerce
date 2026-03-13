@@ -2,10 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { scaleIn } from "@/lib/motion";
 import { formatPrice } from "@/lib/utils";
 import { ROUTES } from "@/lib/constants";
+import { QuickViewModal } from "./QuickViewModal";
 import type { Product } from "@/types";
 
 /**
@@ -20,6 +22,7 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, priority = false }: ProductCardProps) {
+  const [quickViewOpen, setQuickViewOpen] = useState(false);
   const image = product.images[0];
   const isSoldOut = !product.comingSoon && product.stock === 0;
   const isLowStock =
@@ -110,7 +113,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
           <div className="absolute bottom-0 left-0 right-0 z-10 p-3 translate-y-full opacity-0 transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-y-0 group-hover:opacity-100">
             <button
               type="button"
-              onClick={(e) => e.preventDefault()}
+              onClick={(e) => { e.preventDefault(); e.stopPropagation(); setQuickViewOpen(true); }}
               className="w-full border border-white/80 bg-black/70 py-3 type-label text-white tracking-[0.15em] backdrop-blur-sm transition-colors hover:bg-white hover:text-black"
               aria-label={`Adicionar ${product.name} à sacola`}
             >
@@ -167,6 +170,11 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
           </p>
         </div>
       </div>
+      <QuickViewModal
+        product={product}
+        isOpen={quickViewOpen}
+        onClose={() => setQuickViewOpen(false)}
+      />
     </motion.article>
   );
 }
