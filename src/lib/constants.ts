@@ -1,14 +1,18 @@
-export const SITE_NAME = "Schar";
-export const SITE_DESCRIPTION = "Premium e-commerce experience";
+export const SITE_NAME = "SCHAR";
+export const SITE_DESCRIPTION = "Conforto, arte e estilo para o seu dia a dia.";
 
 export const ROUTES = {
   home: "/",
   products: "/products",
   product: (slug: string) => `/products/${slug}`,
+  drops: "/drops",
+  about: "/sobre",
+  contact: "/contato",
   cart: "/cart",
   login: "/login",
   register: "/register",
   account: "/account",
+  orders: "/orders",
 } as const;
 
 export const PAGINATION = {
@@ -17,6 +21,6 @@ export const PAGINATION = {
 } as const;
 
 export const CURRENCY = {
-  code: "USD",
-  locale: "en-US",
+  code: "BRL",
+  locale: "pt-BR",
 } as const;
