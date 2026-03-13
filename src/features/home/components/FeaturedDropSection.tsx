@@ -34,13 +34,13 @@ export function FeaturedDropSection() {
               variants={fadeUp}
               className="type-label text-foreground-muted tracking-[0.2em] mb-2"
             >
-              DROP 001 — SPRING 2026
+              DROP 001 — PRIMAVERA 2026
             </motion.p>
             <motion.h2
               variants={fadeUp}
               className="type-title text-foreground"
             >
-              FEATURED
+              DESTAQUE
             </motion.h2>
           </div>
 
@@ -49,7 +49,7 @@ export function FeaturedDropSection() {
               href={ROUTES.products}
               className="type-label text-foreground-muted tracking-[0.15em] underline underline-offset-4 transition-colors hover:text-accent"
             >
-              VIEW ALL →
+              VER TUDO →
             </Link>
           </motion.div>
         </motion.div>
@@ -64,7 +64,7 @@ export function FeaturedDropSection() {
         >
           <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" aria-hidden="true" />
           <span className="type-label text-foreground-muted tracking-widest">
-            LIVE NOW — LIMITED STOCK
+            AO VIVO — ESTOQUE LIMITADO
           </span>
         </motion.div>
 
@@ -97,7 +97,7 @@ export function FeaturedDropSection() {
             href={ROUTES.products}
             className="group relative overflow-hidden border border-border-strong px-12 py-4 type-label tracking-[0.18em] text-foreground transition-colors duration-300 hover:border-accent hover:text-accent"
           >
-            SHOP ALL DROPS
+            VER TODOS OS DROPS
           </Link>
         </motion.div>
       </Container>

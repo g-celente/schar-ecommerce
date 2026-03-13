@@ -19,7 +19,7 @@ export function NewsletterSection() {
 
     /* Basic email guard */
     if (!email.includes("@") || !email.includes(".")) {
-      setErrorMsg("Enter a valid email address.");
+      setErrorMsg("Digite um endereço de e-mail válido.");
       return;
     }
 
@@ -49,7 +49,7 @@ export function NewsletterSection() {
             variants={fadeUp}
             className="type-label text-foreground-muted tracking-[0.2em]"
           >
-            STAY IN THE LOOP
+            FIQUE POR DENTRO
           </motion.p>
 
           {/* Headline */}
@@ -57,9 +57,9 @@ export function NewsletterSection() {
             variants={fadeUp}
             className="type-title max-w-lg text-foreground"
           >
-            GET EARLY ACCESS
+            ACESSO ANTECIPADO
             <br />
-            TO EVERY DROP
+            A CADA DROP
           </motion.h2>
 
           {/* Body */}
@@ -67,8 +67,8 @@ export function NewsletterSection() {
             variants={fadeUp}
             className="type-body text-foreground-muted max-w-sm"
           >
-            Be first to know when we release new pieces. No spam — only drops,
-            restocks, and exclusive member offers.
+            Seja o primeiro a saber quando lançamos novas peças. Sem spam — apenas drops,
+            reposições e ofertas exclusivas para membros.
           </motion.p>
 
           {/* Form */}
@@ -96,10 +96,10 @@ export function NewsletterSection() {
                 </svg>
               </div>
               <p className="type-subheading text-foreground">
-                You&apos;re on the list.
+                Você está na lista.
               </p>
               <p className="type-small text-foreground-muted">
-                Check your inbox for confirmation.
+                Verifique sua caixa de entrada para confirmação.
               </p>
             </motion.div>
           ) : (
@@ -111,7 +111,7 @@ export function NewsletterSection() {
             >
               <div className="flex flex-col gap-2 sm:flex-row">
                 <label htmlFor={inputId} className="sr-only">
-                  Email address
+                  Endereço de e-mail
                 </label>
                 <input
                   id={inputId}
@@ -137,7 +137,7 @@ export function NewsletterSection() {
                       aria-hidden="true"
                     />
                   ) : (
-                    "SUBSCRIBE"
+                    "INSCREVER-SE"
                   )}
                 </button>
               </div>
@@ -159,7 +159,7 @@ export function NewsletterSection() {
             variants={fadeUp}
             className="type-label text-foreground-subtle tracking-widest"
           >
-            UNSUBSCRIBE ANYTIME · NO SPAM
+            CANCELE QUANDO QUISER · SEM SPAM
           </motion.p>
         </motion.div>
       </Container>

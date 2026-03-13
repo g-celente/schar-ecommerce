@@ -35,7 +35,7 @@ export function ProductFilters({
   }
 
   const options = [
-    { slug: null, name: "ALL", count: totalCount },
+    { slug: null, name: "TODOS", count: totalCount },
     ...categories.map((c) => ({ slug: c.slug, name: c.name, count: c.count })),
   ];
 
@@ -46,7 +46,7 @@ export function ProductFilters({
         isPending && "pointer-events-none opacity-40"
       )}
       role="toolbar"
-      aria-label="Filter products by category"
+      aria-label="Filtrar produtos por categoria"
     >
       {options.map((option) => {
         const isActive =

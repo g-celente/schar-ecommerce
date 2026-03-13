@@ -7,6 +7,7 @@ import { fadeUp } from "@/lib/motion";
 import { formatPrice } from "@/lib/utils";
 import { ROUTES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import { useCartStore } from "@/features/cart/store/cart.store";
 import type { Product } from "@/types";
 
 interface ProductInfoProps {
@@ -17,6 +18,8 @@ export function ProductInfo({ product }: ProductInfoProps) {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [sizeError, setSizeError] = useState(false);
   const [added, setAdded] = useState(false);
+  const addItem = useCartStore((s) => s.addItem);
+  const openCart = useCartStore((s) => s.openCart);
 
   const isSoldOut = product.stock === 0;
   const isLowStock = product.stock > 0 && product.stock <= 5;
@@ -30,8 +33,9 @@ export function ProductInfo({ product }: ProductInfoProps) {
       return;
     }
     setSizeError(false);
-    // TODO: dispatch to Zustand cart store
+    addItem(product, selectedSize);
     setAdded(true);
+    openCart();
     setTimeout(() => setAdded(false), 2000);
   }
 
@@ -47,7 +51,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
         <ol className="flex items-center gap-2 type-label text-foreground-subtle tracking-[0.1em]">
           <li>
             <Link href={ROUTES.products} className="hover:text-foreground transition-colors">
-              STORE
+              LOJA
             </Link>
           </li>
           <li aria-hidden="true">/</li>
@@ -88,7 +92,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
         )}
         {hasDiscount && (
           <span className="type-label bg-white/10 px-2 py-0.5 text-accent tracking-widest">
-            SALE
+            PROMOÇÃO
           </span>
         )}
       </motion.div>
@@ -106,14 +110,14 @@ export function ProductInfo({ product }: ProductInfoProps) {
         <motion.div variants={fadeUp} className="flex flex-col gap-3">
           <div className="flex items-center justify-between">
             <span className="type-label tracking-[0.15em] text-foreground">
-              SIZE
+              TAMANHO
             </span>
             {sizeError && (
               <span
                 className="type-label text-[0.6rem] tracking-widest text-red-400"
                 role="alert"
               >
-                SELECT A SIZE
+                SELECIONE UM TAMANHO
               </span>
             )}
           </div>
@@ -150,7 +154,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
           className="type-label tracking-[0.15em] text-accent"
           role="status"
         >
-          ONLY {product.stock} LEFT
+          APENAS {product.stock} RESTANTES
         </motion.p>
       )}
       {isSoldOut && (
@@ -159,7 +163,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
           className="type-label tracking-[0.15em] text-foreground-muted"
           role="status"
         >
-          SOLD OUT
+          ESGOTADO
         </motion.p>
       )}
 
@@ -171,10 +175,10 @@ export function ProductInfo({ product }: ProductInfoProps) {
           disabled={isSoldOut}
           aria-label={
             isSoldOut
-              ? "Sold out"
+              ? "Esgotado"
               : added
-              ? "Added to cart"
-              : "Add to cart"
+              ? "Adicionado à sacola"
+              : "Adicionar à sacola"
           }
           className={cn(
             "flex-1 border py-4 type-label tracking-[0.2em] transition-all duration-200",
@@ -185,14 +189,14 @@ export function ProductInfo({ product }: ProductInfoProps) {
               : "border-foreground bg-foreground text-background hover:bg-transparent hover:text-foreground"
           )}
         >
-          {isSoldOut ? "SOLD OUT" : added ? "ADDED ✓" : "ADD TO BAG"}
+          {isSoldOut ? "ESGOTADO" : added ? "ADICIONADO ✓" : "ADICIONAR À SACOLA"}
         </button>
 
         <Link
           href={ROUTES.cart}
           className="flex-1 border border-border py-4 text-center type-label tracking-[0.2em] text-foreground-muted transition-colors hover:border-foreground hover:text-foreground sm:flex-none sm:px-8"
         >
-          VIEW BAG
+          VER SACOLA
         </Link>
       </motion.div>
 
