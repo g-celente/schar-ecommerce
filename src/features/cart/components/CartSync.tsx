@@ -5,8 +5,12 @@
  * Strategy:
  *  - Logged-in users: cart stored under "schar-cart-{userId}"
  *  - Anonymous users: cart stored under "schar-cart" (default Zustand key)
- * On login, any existing user cart is merged with the current anonymous cart.
- * On logout, the active cart is saved under the user key, then reset.
+ *
+ * Bug fix: the merge on login uses replaceCart (set-semantics) instead of
+ * addItem (additive). Zustand `persist` already hydrates from "schar-cart" on
+ * every page load, so calling addItem on top of the already-hydrated state
+ * would double every item's quantity. We merge using Math.max(current, saved)
+ * and call replaceCart once — safe on both fresh login and page reload.
  */
 import { useEffect, useRef } from "react";
 import { useSession } from "next-auth/react";
@@ -35,38 +39,72 @@ function saveUserCart(userId: string, items: CartLineItem[]) {
   }
 }
 
+/**
+ * Merge two item lists without doubling quantities.
+ * For items present in both, takes Math.max(current, saved) — avoids
+ * summing on top of an already-hydrated Zustand store.
+ */
+function mergeItems(
+  current: CartLineItem[],
+  saved: CartLineItem[]
+): CartLineItem[] {
+  const map = new Map(current.map((i) => [i.key, { ...i }]));
+  for (const savedItem of saved) {
+    const existing = map.get(savedItem.key);
+    if (existing) {
+      map.set(savedItem.key, {
+        ...existing,
+        quantity: Math.max(existing.quantity, savedItem.quantity),
+      });
+    } else {
+      map.set(savedItem.key, savedItem);
+    }
+  }
+  return Array.from(map.values());
+}
+
 export function CartSync() {
   const { data: session, status } = useSession();
   const prevUserIdRef = useRef<string | null>(null);
-  const addItem = useCartStore((s) => s.addItem);
-  const clearCart = useCartStore((s) => s.clearCart);
-  const items = useCartStore((s) => s.items);
 
+  /**
+   * LOGIN / LOGOUT handler.
+   * Intentionally depends only on [session, status] — NOT on items.
+   * We read items via useCartStore.getState() to avoid the effect re-running
+   * every time an item is added, which would cause repeated merges and
+   * consequent quantity doubling.
+   */
   useEffect(() => {
     if (status === "loading") return;
 
     const userId = session?.user?.id ?? null;
     const prevUserId = prevUserIdRef.current;
 
-    // Logged in
+    // ── User just logged in (or page reloaded while logged in) ──
     if (userId && userId !== prevUserId) {
-      const savedItems = readUserCart(userId);
-      // Merge saved user cart on top of current anonymous cart
-      savedItems.forEach((item) => {
-        addItem(item.product, item.size, item.quantity);
-      });
       prevUserIdRef.current = userId;
+
+      const savedItems = readUserCart(userId);
+      if (savedItems.length === 0) return;
+
+      // Read current store state without adding it as a React dependency
+      const { items: currentItems, replaceCart } = useCartStore.getState();
+      const merged = mergeItems(currentItems, savedItems);
+      replaceCart(merged);
     }
 
-    // Logged out
+    // ── User logged out ──
     if (!userId && prevUserId) {
+      const { items, clearCart } = useCartStore.getState();
       saveUserCart(prevUserId, items);
       clearCart();
       prevUserIdRef.current = null;
     }
-  }, [session, status, addItem, clearCart, items]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [session, status]);
 
-  // Persist user cart on every items change when logged in
+  // ── Persist user cart on every items change when logged in ──
+  const items = useCartStore((s) => s.items);
   useEffect(() => {
     const userId = session?.user?.id;
     if (!userId) return;
@@ -75,3 +113,4 @@ export function CartSync() {
 
   return null;
 }
+

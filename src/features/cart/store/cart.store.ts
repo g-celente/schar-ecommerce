@@ -19,6 +19,9 @@ interface CartStore {
   removeItem: (key: string) => void;
   updateQuantity: (key: string, quantity: number) => void;
   clearCart: () => void;
+  /** Replace the entire cart with a new list — use instead of addItem when restoring
+   *  a saved cart to avoid summing on top of already-hydrated Zustand state. */
+  replaceCart: (newItems: CartLineItem[]) => void;
 
   openCart: () => void;
   closeCart: () => void;
@@ -78,6 +81,10 @@ export const useCartStore = create<CartStore>()(
 
       clearCart() {
         set({ items: [] });
+      },
+
+      replaceCart(newItems) {
+        set({ items: newItems });
       },
 
       openCart: () => set({ isOpen: true }),
