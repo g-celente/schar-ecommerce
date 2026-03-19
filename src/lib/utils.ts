@@ -4,8 +4,8 @@ export function cn(...classes: (string | undefined | null | false)[]): string {
 
 export function formatPrice(
   amount: number,
-  currency: string = "USD",
-  locale: string = "en-US"
+  currency: string = "BRL",
+  locale: string = "pt-BR"
 ): string {
   return new Intl.NumberFormat(locale, {
     style: "currency",

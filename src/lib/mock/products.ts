@@ -17,7 +17,7 @@ export const DROP_001_PRODUCTS: Product[] = [
     name: "TEE 001",
     description:
       "Camiseta oversized premium. Modelagem estruturada com drop shoulder. Tecido de alta gramatura — toque macio e acabamento impecável. Qualidade que você sente no primeiro contato e percebe na durabilidade. Estampa exclusiva DROP 001.",
-    price: 189,
+    price: 109.90,
     images: [
       {
         id: "s001-a",
@@ -63,7 +63,7 @@ export const DROP_001_PRODUCTS: Product[] = [
     name: "TEE 002",
     description:
       "Camiseta oversized premium. Modelagem estruturada com drop shoulder. Tecido de alta gramatura — toque macio e acabamento impecável. Qualidade que você sente no primeiro contato e percebe na durabilidade. Estampa exclusiva DROP 001.",
-    price: 189,
+    price: 109.90,
     images: [
       {
         id: "s001-b",
@@ -135,7 +135,7 @@ export const CATEGORIES = [
     name: "DROP 01",
     slug: "camisetas",
     // Use first product image as category hero
-    image: "/products/tee-001/main.jpeg",
+    image: "/products/tee-001/front.jpeg",
     count: 2,
   },
   {
