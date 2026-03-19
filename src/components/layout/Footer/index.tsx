@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { ROUTES, SITE_NAME } from "@/lib/constants";
@@ -34,7 +35,13 @@ export function Footer() {
         <div className="grid grid-cols-2 gap-8 py-12 sm:grid-cols-4">
           {/* Brand column */}
           <div className="col-span-2 sm:col-span-1">
-            <p className="type-label tracking-[0.3em] font-bold text-foreground">{SITE_NAME}</p>
+            <Image
+              src="/brand/logo.png"
+              alt={SITE_NAME}
+              width={160}
+              height={54}
+              className="h-11 w-auto object-contain"
+            />
             <p className="mt-3 type-small text-foreground-muted max-w-[180px]">
               Streat wear limitada. Cada peça é um drop.
             </p>

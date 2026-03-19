@@ -1,5 +1,6 @@
 ﻿"use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -63,14 +64,18 @@ export function Navbar() {
             {/* ── Logo ── */}
             <Link
               href={ROUTES.home}
-              className={cn(
-                "font-display text-2xl tracking-[0.35em] leading-none hover:opacity-70 transition-all duration-300",
-                (scrolled || !isHome) ? "text-foreground font-semibold" : "text-white font-extrabold"
-              )}
+              className="hover:opacity-70 transition-all duration-300"
               onClick={() => setMenuOpen(false)}
               aria-label={SITE_NAME}
             >
-              {SITE_NAME}
+              <Image
+                src="/brand/logo.png"
+                alt={SITE_NAME}
+                width={160}
+                height={54}
+                priority
+                className="h-11 w-auto object-contain transition-all duration-300"
+              />
             </Link>
 
             {/* â"€â"€ Desktop nav â"€â"€ */}

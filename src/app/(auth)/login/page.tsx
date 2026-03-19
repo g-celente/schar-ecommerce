@@ -1,4 +1,5 @@
-﻿import { Suspense } from "react";
+﻿import Image from "next/image";
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { LoginForm } from "@/features/auth/components/LoginForm";
 import { SITE_NAME } from "@/lib/constants";
@@ -13,9 +14,13 @@ export default function LoginPage() {
     <main className="flex min-h-dvh items-center justify-center px-4 py-20">
       <div className="w-full max-w-sm space-y-8">
         <div className="space-y-1">
-          <p className="type-label tracking-[0.3em] text-foreground-muted">
-            {SITE_NAME.toUpperCase()}
-          </p>
+          <Image
+            src="/brand/logo.png"
+            alt={SITE_NAME}
+            width={160}
+            height={54}
+            className="h-11 w-auto object-contain"
+          />
           <h1 className="type-display text-3xl">ENTRAR</h1>
         </div>
         <Suspense>
