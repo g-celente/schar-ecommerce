@@ -1,7 +1,9 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { HeroSection } from "@/features/home/components/HeroSection";
 import { FeaturedDropSection } from "@/features/home/components/FeaturedDropSection";
-import { CategoryPreviewSection } from "@/features/home/components/CategoryPreviewSection";
+import { ImpactBannerSection } from "@/features/home/components/ImpactBannerSection";
+import { LookbookSection } from "@/features/home/components/LookbookSection";
+import { CategoryGridSection } from "@/features/home/components/CategoryGridSection";
 import { NewsletterSection } from "@/features/home/components/NewsletterSection";
 
 // Home page uses only static data — pre-render once and never revalidate.
@@ -18,7 +20,9 @@ export default function HomePage() {
     <>
       <HeroSection />
       <FeaturedDropSection />
-      <CategoryPreviewSection />
+      <ImpactBannerSection />
+      <LookbookSection />
+      <CategoryGridSection />
       <NewsletterSection />
     </>
   );
