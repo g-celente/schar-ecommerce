@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     "SCHAR nasce de um sonho. Arte de rua, cultura urbana e autenticidade em cada estampa. Conheça nossa história.",
 };
 
-const IMAGEM = "/brand/sobre.jpeg";
+const IMAGEM = "/brand/IMG_1655.jpg";
+const IMAGEM_EXPERIENCIA = "/brand/IMG_1757.jpg"; // troque pelo caminho da imagem desejada
 
 export default function SobrePage() {
   return (
@@ -38,7 +39,7 @@ export default function SobrePage() {
             <div className="space-y-5 type-body text-foreground-muted leading-relaxed">
               <p>
                 SCHAR nasce de um sonho que começou lá atrás, na infância, com o
-                desenho no papel — e ganhou forma em 2020 como projeto de TCC no
+                desenho no papel e ganhou forma em 2020 como projeto de TCC no
                 curso técnico em Administração.
               </p>
               <p>
@@ -46,7 +47,7 @@ export default function SobrePage() {
                 arte de rua pelo mundo através de peças exclusivas.
               </p>
               <p>
-                Em 2026, acontece o nosso primeiro DROP oficial — edição limitada.
+                Em 2026, acontece o nosso primeiro DROP oficial edição limitada.
                 Peças pensadas nos mínimos detalhes para quem entende que vestir é
                 se posicionar.
               </p>
@@ -106,23 +107,49 @@ export default function SobrePage() {
       {/* ── EXPERIÊNCIA ── */}
       <div className="border-t border-border bg-surface">
         <Container className="section">
-          <div className="max-w-2xl">
-            <p className="type-label text-foreground-muted tracking-[0.2em] mb-4">
-              A EXPERIÊNCIA
-            </p>
-            <h2 className="type-subheading text-2xl md:text-3xl font-semibold mb-6 leading-tight">
-              Você não compra apenas<br />uma camiseta.
-            </h2>
-            <div className="space-y-5 type-body text-foreground-muted leading-relaxed">
-              <p>
-                Você vive a experiência SCHAR.
+          <div className="grid grid-cols-1 gap-16 md:grid-cols-2 md:gap-24">
+            {/* Visual block */}
+            <div className="relative aspect-[3/4] bg-surface-2 overflow-hidden order-2 md:order-1">
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: `url(${IMAGEM_EXPERIENCIA})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+                aria-hidden="true"
+              />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <p className="type-hero text-[clamp(4rem,15vw,10rem)] text-foreground/5 select-none font-bold">
+                  EXP
+                </p>
+              </div>
+              <div className="absolute bottom-6 left-6 right-6">
+                <p className="type-label text-foreground-subtle tracking-[0.2em]">
+                  EXPERIÊNCIA SCHAR
+                </p>
+              </div>
+            </div>
+
+            {/* Text */}
+            <div className="order-1 md:order-2 flex flex-col justify-center">
+              <p className="type-label text-foreground-muted tracking-[0.2em] mb-4">
+                A EXPERIÊNCIA
               </p>
-              <p>
-                Cada peça será entregue em embalagens premium, selecionadas entre as
-                melhores do mercado, criando uma experiência única desde o momento em
-                que chega até você. Do unboxing ao primeiro uso, tudo foi pensado para
-                marcar.
-              </p>
+              <h2 className="type-subheading text-2xl md:text-3xl font-semibold mb-6 leading-tight">
+                Você não compra apenas<br />uma camiseta.
+              </h2>
+              <div className="space-y-5 type-body text-foreground-muted leading-relaxed">
+                <p>
+                  Você vive a experiência SCHAR.
+                </p>
+                <p>
+                  Cada peça será entregue em embalagens premium, selecionadas entre as
+                  melhores do mercado, criando uma experiência única desde o momento em
+                  que chega até você. Do unboxing ao primeiro uso, tudo foi pensado para
+                  marcar.
+                </p>
+              </div>
             </div>
           </div>
         </Container>
