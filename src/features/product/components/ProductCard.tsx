@@ -24,60 +24,10 @@ interface ProductCardProps {
 export function ProductCard({ product, priority = false }: ProductCardProps) {
   const [quickViewOpen, setQuickViewOpen] = useState(false);
   const image = product.images[0];
-  const isSoldOut = !product.comingSoon && product.stock === 0;
-  const isLowStock =
-    !product.comingSoon && product.stock > 0 && product.stock <= 5;
+  const isSoldOut = product.stock === 0;
+  const isLowStock = product.stock > 0 && product.stock <= 5;
   const hasDiscount =
     product.compareAtPrice && product.compareAtPrice > product.price;
-
-  // ── Coming soon — static locked card ──────────────────────────────────────
-  if (product.comingSoon) {
-    return (
-      <article className="relative flex flex-col">
-        <div className="relative overflow-hidden aspect-product bg-surface-2">
-          <div
-            className="absolute inset-0 opacity-[0.05]"
-            style={{
-              backgroundImage:
-                "linear-gradient(var(--foreground) 1px, transparent 1px), linear-gradient(90deg, var(--foreground) 1px, transparent 1px)",
-              backgroundSize: "32px 32px",
-            }}
-            aria-hidden="true"
-          />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-foreground-subtle"
-              aria-hidden="true"
-            >
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-            </svg>
-          </div>
-          <div className="absolute left-2 top-2 z-10">
-            <span className="type-label bg-surface-3/90 px-2 py-1 text-foreground-muted tracking-widest backdrop-blur-sm">
-              EM BREVE
-            </span>
-          </div>
-        </div>
-        <div className="mt-3">
-          <p className="type-label text-foreground-subtle tracking-[0.12em]">
-            DROP 002
-          </p>
-          <h3 className="mt-0.5 type-heading text-[1rem] font-semibold text-foreground-subtle">
-            EM BREVE
-          </h3>
-        </div>
-      </article>
-    );
-  }
 
   // ── Available product ──────────────────────────────────────────────────────
   return (

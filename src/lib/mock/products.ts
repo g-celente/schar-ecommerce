@@ -2,8 +2,7 @@ import type { Product } from "@/types";
 
 /**
  * DROP 001 — PRIMAVERA 2026
- * Inaugural SCHAR collection. 4 products with real assets.
- * All other products are marked comingSoon: true.
+ * Inaugural SCHAR collection.
  *
  * To update: replace name, description, price, and images per product.
  * Local images live in /public/products/{slug}/
@@ -26,12 +25,12 @@ export const DROP_001_PRODUCTS: Product[] = [
       },
       {
         id: "s002-a",
-        url: "/products/tee-001/back.jpeg",
+        url: "/products/tee-001/image1.jpeg",
         alt: "SCHAR TEE 001 — DROP 001",
       },
       {
         id: "s003-a",
-        url: "/products/tee-001/image1.jpeg",
+        url: "/products/tee-001/livia-car.jpg",
         alt: "SCHAR TEE 001 — DROP 001",
       },
       {
@@ -40,12 +39,12 @@ export const DROP_001_PRODUCTS: Product[] = [
         alt: "SCHAR TEE 001 — DROP 001",
       },
       {
-        id: "s005-a",
-        url: "/products/tee-001/image3.jpeg",
+        id: "s006-a",
+        url: "/products/tee-001/IMG_1714.jpg",
         alt: "SCHAR TEE 001 — DROP 001",
       },
       {
-        id: "s006-a",
+        id: "s007-a",
         url: "/products/tee-001/image4.jpeg",
         alt: "SCHAR TEE 001 — DROP 001",
       },
@@ -72,7 +71,27 @@ export const DROP_001_PRODUCTS: Product[] = [
       },
       {
         id: "s002-b",
-        url: "/products/tee-002/back.jpeg",
+        url: "/products/tee-002/20260322_162110.jpg",
+        alt: "SCHAR TEE 002 — DROP 001",
+      },
+      {
+        id: "s003-b",
+        url: "/products/tee-002/back2.jpeg",
+        alt: "SCHAR TEE 002 — DROP 001",
+      },
+      {
+        id: "s004-b",
+        url: "/products/tee-002/schar.jpg",
+        alt: "SCHAR TEE 002 — DROP 001",
+      },
+      {
+        id: "s005-b",
+        url: "/products/tee-002/front2.jpeg",
+        alt: "SCHAR TEE 002 — DROP 001",
+      },
+      {
+        id: "s006-b",
+        url: "/products/tee-002/20260322_162141.jpg",
         alt: "SCHAR TEE 002 — DROP 001",
       },
     ],
@@ -85,45 +104,8 @@ export const DROP_001_PRODUCTS: Product[] = [
   }
 ];
 
-// ─── Coming soon — future drops ───────────────────────────────────────────────
-const COMING_SOON_PRODUCTS: Product[] = [
-  {
-    id: "cs-001",
-    slug: "drop-002-tee-a",
-    name: "DROP 002 — A",
-    description: "Em breve.",
-    price: 0,
-    images: [],
-    category: { id: "cat-camisetas", name: "CAMISETAS", slug: "camisetas" },
-    tags: [],
-    sizes: [],
-    stock: 0,
-    rating: 0,
-    reviewCount: 0,
-    comingSoon: true,
-  },
-  {
-    id: "cs-002",
-    slug: "drop-002-tee-b",
-    name: "DROP 002 — B",
-    description: "Em breve.",
-    price: 0,
-    images: [],
-    category: { id: "cat-camisetas", name: "CAMISETAS", slug: "camisetas" },
-    tags: [],
-    sizes: [],
-    stock: 0,
-    rating: 0,
-    reviewCount: 0,
-    comingSoon: true,
-  }
-];
-
 // ─── Full catalogue ───────────────────────────────────────────────────────────
-export const ALL_PRODUCTS: Product[] = [
-  ...DROP_001_PRODUCTS,
-  ...COMING_SOON_PRODUCTS,
-];
+export const ALL_PRODUCTS: Product[] = [...DROP_001_PRODUCTS];
 
 // ─── Featured subset — home page ──────────────────────────────────────────────
 export const FEATURED_PRODUCTS: Product[] = DROP_001_PRODUCTS;
@@ -134,27 +116,8 @@ export const CATEGORIES = [
     id: "cat-camisetas",
     name: "DROP 01",
     slug: "camisetas",
-    // Use first product image as category hero
     image: "/products/tee-001/front.jpeg",
     count: 2,
-  },
-  {
-    id: "cat-moletons",
-    name: "EM BREVE",
-    slug: "EM BREVE",
-    image:
-      "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=900&q=80",
-    count: 0,
-    comingSoon: true,
-  },
-  {
-    id: "cat-bones",
-    name: "EM BREVE",
-    slug: "EM BREVE",
-    image:
-      "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=900&q=80",
-    count: 0,
-    comingSoon: true,
   },
 ] as const;
 
@@ -167,7 +130,6 @@ export function getRelatedProducts(product: Product, limit = 4): Product[] {
   return ALL_PRODUCTS.filter(
     (p) =>
       p.id !== product.id &&
-      p.category.id === product.category.id &&
-      !p.comingSoon
+      p.category.id === product.category.id
   ).slice(0, limit);
 }

@@ -16,34 +16,6 @@ type Category = (typeof CATEGORIES)[number];
  * The parent motion.div still handles the viewport entrance animation.
  */
 function CategoryCard({ category }: { category: Category }) {
-  const isComingSoon = "comingSoon" in category && category.comingSoon;
-
-  if (isComingSoon) {
-    return (
-      <motion.div variants={fadeUp} className="relative overflow-hidden">
-        <div className="relative aspect-editorial bg-surface-2 border border-border flex items-center justify-center overflow-hidden">
-          <div
-            className="absolute inset-0 opacity-[0.04]"
-            style={{
-              backgroundImage:
-                "linear-gradient(var(--foreground) 1px, transparent 1px), linear-gradient(90deg, var(--foreground) 1px, transparent 1px)",
-              backgroundSize: "40px 40px",
-            }}
-            aria-hidden="true"
-          />
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center">
-            <span className="type-display text-[clamp(2.5rem,7vw,4.5rem)] text-foreground-subtle">
-              {category.name}
-            </span>
-            <span className="type-label text-foreground-subtle tracking-[0.2em]">
-              EM BREVE
-            </span>
-          </div>
-        </div>
-      </motion.div>
-    );
-  }
-
   return (
     <motion.div variants={fadeUp} className="group relative overflow-hidden">
       <Link

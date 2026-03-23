@@ -15,7 +15,7 @@ import {
  * TTFB drops to near-zero — no server compute per request.
  */
 export async function generateStaticParams() {
-  return ALL_PRODUCTS.filter((p) => !p.comingSoon).map((p) => ({
+  return ALL_PRODUCTS.map((p) => ({
     id: p.slug,
   }));
 }

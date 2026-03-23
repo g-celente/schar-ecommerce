@@ -25,7 +25,7 @@ export interface Product {
   stock: number;
   rating: number;
   reviewCount: number;
-  comingSoon?: boolean;
+
 }
 
 export interface ProductImage {

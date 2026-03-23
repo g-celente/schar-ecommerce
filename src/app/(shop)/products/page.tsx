@@ -23,7 +23,6 @@ export default async function ProductsPage({
 }: ProductsPageProps) {
   const { category } = await searchParams;
 
-  const available = ALL_PRODUCTS.filter((p) => !p.comingSoon);
   const filtered = category
     ? ALL_PRODUCTS.filter((p) => p.category.slug === category)
     : ALL_PRODUCTS;
@@ -32,7 +31,7 @@ export default async function ProductsPage({
     id: c.id,
     name: c.name,
     slug: c.slug,
-    count: available.filter((p) => p.category.slug === c.slug).length,
+    count: ALL_PRODUCTS.filter((p) => p.category.slug === c.slug).length,
   }));
 
   return (
