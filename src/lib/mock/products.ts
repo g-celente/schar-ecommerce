@@ -30,7 +30,7 @@ export const DROP_001_PRODUCTS: Product[] = [
       },
       {
         id: "s003-a",
-        url: "/products/tee-001/livia-car.jpg",
+        url: "/products/tee-001/livia-car.webp",
         alt: "SCHAR TEE 001 — DROP 001",
       },
       {
@@ -40,7 +40,7 @@ export const DROP_001_PRODUCTS: Product[] = [
       },
       {
         id: "s006-a",
-        url: "/products/tee-001/IMG_1714.jpg",
+        url: "/products/tee-001/IMG_1714.webp",
         alt: "SCHAR TEE 001 — DROP 001",
       },
       {
@@ -81,7 +81,7 @@ export const DROP_001_PRODUCTS: Product[] = [
       },
       {
         id: "s004-b",
-        url: "/products/tee-002/schar.jpg",
+        url: "/products/tee-002/schar.webp",
         alt: "SCHAR TEE 002 — DROP 001",
       },
       {
@@ -91,7 +91,7 @@ export const DROP_001_PRODUCTS: Product[] = [
       },
       {
         id: "s006-b",
-        url: "/products/tee-002/20260322_162141.jpg",
+        url: "/products/tee-002/20260322_162141.webp",
         alt: "SCHAR TEE 002 — DROP 001",
       },
     ],

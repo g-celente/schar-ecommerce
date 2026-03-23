@@ -21,7 +21,7 @@ export function CartItem({ item }: CartItemProps) {
       layout
       initial={{ opacity: 0, x: 24 }}
       animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: 24, height: 0 }}
+      exit={{ opacity: 0, x: 24 }}
       transition={{ duration: 0.3, ease: [0.19, 1, 0.22, 1] }}
       className="flex gap-4 py-5 border-b border-border last:border-0"
     >

@@ -16,7 +16,7 @@ const LOOKBOOK_ITEMS = [
   },
   {
     id: "lb-2",
-    src: "/products/IMG_1667.jpg",
+    src: "/products/IMG_1667.webp",
     alt: "SCHAR Lookbook — Detail",
     span: "small" as const,
     phrase: null,
@@ -30,14 +30,14 @@ const LOOKBOOK_ITEMS = [
   },
   {
     id: "lb-4",
-    src: "/products/schar-skate2.jpg",
+    src: "/products/20260322_162110.jpg",
     alt: "SCHAR Lookbook — Editorial",
     span: "small" as const,
     phrase: null,
   },
   {
     id: "lb-5",
-    src: "/products/IMG_1641.jpg",
+    src: "/products/IMG_1641.webp",
     alt: "SCHAR Lookbook — Back",
     span: "small" as const,
     phrase: "VISTA A ATITUDE",
@@ -79,15 +79,22 @@ function LookbookCard({
       }`}
     >
       {/* Image with hover effects */}
-      <div className="absolute inset-0 will-change-transform transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[1.06] group-hover:saturate-[1.15]">
+      {/* Image container — only transform (GPU-safe) */}
+      <div className="absolute inset-0 will-change-transform transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[1.06]">
         <Image
           src={item.src}
           alt={item.alt}
           fill
           sizes={isLarge ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 50vw, 33vw"}
-          className="object-cover grayscale-[0.15] transition-[filter] duration-700 group-hover:grayscale-0"
+          className="object-cover"
         />
       </div>
+
+      {/* Desaturation overlay — opacity transition simulates grayscale-to-color */}
+      <div
+        className="absolute inset-0 bg-neutral-900/15 mix-blend-saturation transition-opacity duration-700 group-hover:opacity-0 pointer-events-none"
+        aria-hidden="true"
+      />
 
       {/* Dark overlay on hover */}
       <div

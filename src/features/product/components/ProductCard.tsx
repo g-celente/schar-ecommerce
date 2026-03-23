@@ -4,10 +4,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import { scaleIn } from "@/lib/motion";
 import { formatPrice } from "@/lib/utils";
 import { ROUTES } from "@/lib/constants";
-import { QuickViewModal } from "./QuickViewModal";
+
+const QuickViewModal = dynamic(
+  () => import("./QuickViewModal").then((m) => ({ default: m.QuickViewModal })),
+  { ssr: false }
+);
 import type { Product } from "@/types";
 
 /**

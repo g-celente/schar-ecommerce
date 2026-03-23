@@ -12,20 +12,20 @@ const HERO_WORDS = ["SCHAR", "DROP", "001"];
 /* ── Hero slides — add/remove images here ──────────────────────────────────── */
 const HERO_SLIDES = [
   {
-    desktop: "/brand/schar-principal.jpg",
-    mobile: "/brand/schar-principal.jpg",
+    desktop: "/brand/schar-principal.webp",
+    mobile: "/brand/schar-principal.webp",
     alt: "Schar Drop 001 — Hero",
     objectPosition: "center 30%",
   },
   {
-    desktop: "/brand/schar-andre.jpg",
-    mobile: "/brand/schar-andre.jpg",
+    desktop: "/brand/schar-andre.webp",
+    mobile: "/brand/schar-andre.webp",
     alt: "Schar Drop 001 — Hero",
     objectPosition: "center 20%",
   },
   {
-    desktop: "/brand/schar-skate.jpg",
-    mobile: "/brand/schar-skate.jpg",
+    desktop: "/brand/schar-skate.webp",
+    mobile: "/brand/schar-skate.webp",
     alt: "Schar Drop 001 — top",
     objectPosition: "center 30%",
   },
@@ -116,7 +116,7 @@ export function HeroSection() {
                 src={HERO_SLIDES[activeSlide].desktop}
                 alt={HERO_SLIDES[activeSlide].alt}
                 fill
-                priority={activeSlide === 0}
+                priority={activeSlide === 0 || activeSlide === DESKTOP_FIXED_SLIDE}
                 sizes="100vw"
                 className="object-cover"
                 style={{ objectPosition: HERO_SLIDES[activeSlide].objectPosition ?? "center" }}

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { ROUTES, SITE_NAME } from "@/lib/constants";
@@ -9,8 +10,8 @@ export const metadata: Metadata = {
     "SCHAR nasce de um sonho. Arte de rua, cultura urbana e autenticidade em cada estampa. Conheça nossa história.",
 };
 
-const IMAGEM = "/brand/IMG_1655.jpg";
-const IMAGEM_EXPERIENCIA = "/brand/IMG_1757.jpg"; // troque pelo caminho da imagem desejada
+const IMAGEM = "/brand/IMG_1655.webp";
+const IMAGEM_EXPERIENCIA = "/brand/IMG_1757.webp"; // troque pelo caminho da imagem desejada
 
 export default function SobrePage() {
   return (
@@ -56,14 +57,12 @@ export default function SobrePage() {
 
           {/* Visual block */}
           <div className="relative aspect-[3/4] bg-surface-2 overflow-hidden">
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage: `url(${IMAGEM})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center"
-              }}
-              aria-hidden="true"
+            <Image
+              src={IMAGEM}
+              alt=""
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
             />
             <div className="absolute inset-0 flex items-center justify-center">
               <p className="type-hero text-[clamp(4rem,15vw,10rem)] text-foreground/5 select-none font-bold">
@@ -110,14 +109,12 @@ export default function SobrePage() {
           <div className="grid grid-cols-1 gap-16 md:grid-cols-2 md:gap-24">
             {/* Visual block */}
             <div className="relative aspect-[3/4] bg-surface-2 overflow-hidden order-2 md:order-1">
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `url(${IMAGEM_EXPERIENCIA})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-                aria-hidden="true"
+              <Image
+                src={IMAGEM_EXPERIENCIA}
+                alt=""
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
               />
               <div className="absolute inset-0 flex items-center justify-center">
                 <p className="type-hero text-[clamp(4rem,15vw,10rem)] text-foreground/5 select-none font-bold">
