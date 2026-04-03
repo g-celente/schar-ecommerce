@@ -19,7 +19,7 @@ export default function ContatoPage() {
   }
 
   function openWhatsApp() {
-    const phone = "+55 41 9 9557-1279"; // Replace with your WhatsApp number
+    const phone = "+5541987898324"; // Replace with your WhatsApp number
     const msg = encodeURIComponent("Olá! Vim pelo site da Schar e gostaria de falar com vocês.");
     window.open(`https://wa.me/${phone}?text=${msg}`, "_blank", "noopener,noreferrer");
   }
