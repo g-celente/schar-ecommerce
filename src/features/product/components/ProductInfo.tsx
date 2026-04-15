@@ -22,7 +22,6 @@ export function ProductInfo({ product }: ProductInfoProps) {
   const openCart = useCartStore((s) => s.openCart);
 
   const isSoldOut = product.stock === 0;
-  const isLowStock = product.stock > 0 && product.stock <= 5;
   const hasDiscount =
     product.compareAtPrice && product.compareAtPrice > product.price;
   const hasSizes = product.sizes && product.sizes.length > 0;
@@ -148,24 +147,23 @@ export function ProductInfo({ product }: ProductInfoProps) {
       )}
 
       {/* ── Stock status ── */}
-      {isLowStock && (
-        <motion.p
-          variants={fadeUp}
-          className="type-label tracking-[0.15em] text-accent"
-          role="status"
+      <motion.div variants={fadeUp} className="flex items-center gap-2" role="status">
+        <span
+          className={cn(
+            "inline-block h-1.5 w-1.5 rounded-full",
+            isSoldOut ? "bg-foreground-subtle" : "bg-emerald-400"
+          )}
+          aria-hidden="true"
+        />
+        <p
+          className={cn(
+            "type-label tracking-[0.15em]",
+            isSoldOut ? "text-foreground-muted" : "text-emerald-400"
+          )}
         >
-          APENAS {product.stock} RESTANTES
-        </motion.p>
-      )}
-      {isSoldOut && (
-        <motion.p
-          variants={fadeUp}
-          className="type-label tracking-[0.15em] text-foreground-muted"
-          role="status"
-        >
-          ESGOTADO
-        </motion.p>
-      )}
+          {isSoldOut ? "INDISPONÍVEL" : "DISPONÍVEL"}
+        </p>
+      </motion.div>
 
       {/* ── Add to cart ── */}
       <motion.div variants={fadeUp} className="flex flex-col gap-3 sm:flex-row">
@@ -175,7 +173,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
           disabled={isSoldOut}
           aria-label={
             isSoldOut
-              ? "Esgotado"
+              ? "Indisponível"
               : added
               ? "Adicionado à sacola"
               : "Adicionar à sacola"
@@ -189,7 +187,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
               : "border-foreground bg-foreground text-background hover:bg-transparent hover:text-foreground"
           )}
         >
-          {isSoldOut ? "ESGOTADO" : added ? "ADICIONADO ✓" : "ADICIONAR À SACOLA"}
+          {isSoldOut ? "INDISPONÍVEL" : added ? "ADICIONADO ✓" : "ADICIONAR À SACOLA"}
         </button>
 
         <Link

@@ -81,7 +81,6 @@ export function QuickViewModal({
   const hasSizes = !!product.sizes?.length;
   const activeImage = product.images[activeIndex];
   const isSoldOut = product.stock === 0;
-  const isLowStock = product.stock > 0 && product.stock <= 5;
   const hasDiscount =
     product.compareAtPrice && product.compareAtPrice > product.price;
   const discountPct = hasDiscount
@@ -264,16 +263,15 @@ export function QuickViewModal({
                       </span>
                     )}
 
-                    {/* Sold-out / low-stock badge */}
+                    {/* Availability badge */}
                     <div className="absolute left-3 top-3 z-10 flex flex-col gap-1.5 mt-7">
-                      {isSoldOut && !hasDiscount && (
+                      {isSoldOut ? (
                         <span className="type-label bg-surface-3/90 px-2.5 py-1.5 text-foreground-muted tracking-widest backdrop-blur-sm">
-                          ESGOTADO
+                          INDISPONÍVEL
                         </span>
-                      )}
-                      {!isSoldOut && isLowStock && (
-                        <span className="type-label bg-black/75 px-2.5 py-1.5 text-accent tracking-widest backdrop-blur-sm">
-                          {product.stock} RESTANTES
+                      ) : (
+                        <span className="type-label bg-black/75 px-2.5 py-1.5 text-emerald-400 tracking-widest backdrop-blur-sm">
+                          DISPONÍVEL
                         </span>
                       )}
                     </div>
@@ -438,21 +436,25 @@ export function QuickViewModal({
                     {product.description}
                   </p>
 
-                  {/* Low stock warning */}
-                  {isLowStock && !isSoldOut && (
-                    <div className="flex items-center gap-2">
-                      <span
-                        className="inline-block h-1.5 w-1.5 rounded-full bg-accent"
-                        aria-hidden="true"
-                      />
-                      <p
-                        className="type-label tracking-[0.15em] text-accent"
-                        role="status"
-                      >
-                        APENAS {product.stock} RESTANTES
-                      </p>
-                    </div>
-                  )}
+                  {/* Availability status */}
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={cn(
+                        "inline-block h-1.5 w-1.5 rounded-full",
+                        isSoldOut ? "bg-foreground-subtle" : "bg-emerald-400"
+                      )}
+                      aria-hidden="true"
+                    />
+                    <p
+                      className={cn(
+                        "type-label tracking-[0.15em]",
+                        isSoldOut ? "text-foreground-muted" : "text-emerald-400"
+                      )}
+                      role="status"
+                    >
+                      {isSoldOut ? "INDISPONÍVEL" : "DISPONÍVEL"}
+                    </p>
+                  </div>
 
                   {/* ── Actions ────────────────────────────────────────── */}
                   <div className="flex flex-col gap-3 pt-1 border-t border-border mt-1">
@@ -473,7 +475,7 @@ export function QuickViewModal({
                         )}
                       >
                         {isSoldOut
-                          ? "ESGOTADO"
+                          ? "INDISPONÍVEL"
                           : added
                           ? "ADICIONADO ✓"
                           : "ADICIONAR À SACOLA"}
