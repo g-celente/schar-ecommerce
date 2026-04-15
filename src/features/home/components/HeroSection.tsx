@@ -149,17 +149,17 @@ export function HeroSection() {
 
       {/* ── Label overline ── */}
       <motion.div
-        className="relative z-10 mb-5 flex items-center gap-3"
+        className="relative z-10 mb-6 flex items-center gap-3"
         variants={fadeIn}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         transition={{ delay: 0.2 }}
       >
-        <span className="h-px w-8 bg-accent/60" />
-        <span className="type-label text-accent/80 tracking-[0.2em]">
+        <span className="h-px w-8 bg-white/40" />
+        <span className="font-sans text-[0.65rem] font-medium uppercase text-white/60 tracking-[0.25em]">
           Drop Primavera — 2026
         </span>
-        <span className="h-px w-8 bg-accent/60" />
+        <span className="h-px w-8 bg-white/40" />
       </motion.div>
 
       {/* ── Main headline ── */}
@@ -172,7 +172,7 @@ export function HeroSection() {
         {HERO_WORDS.map((word, i) => (
           <div key={word} className="overflow-hidden">
             <motion.h1
-              className="type-hero block text-white"
+              className="block font-heading font-bold text-white tracking-tight text-[clamp(2.5rem,12vw,7rem)] leading-[0.95]"
               variants={heroReveal}
               transition={{ delay: i * 0.12 }}
             >
@@ -184,7 +184,7 @@ export function HeroSection() {
 
       {/* ── Sub copy ── */}
       <motion.p
-        className="relative z-10 mt-5 max-w-xs text-center type-small text-foreground-muted md:max-w-sm"
+        className="relative z-10 mt-6 max-w-xs text-center font-sans text-sm font-light text-white/50 leading-relaxed md:max-w-sm"
         variants={fadeIn}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
@@ -197,7 +197,7 @@ export function HeroSection() {
 
       {/* ── CTAs ── */}
       <motion.div
-        className="relative z-10 mt-8 flex flex-col items-center gap-3 sm:flex-row"
+        className="relative z-10 mt-10 flex flex-col items-center gap-4 sm:flex-row"
         variants={fadeIn}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
@@ -205,7 +205,7 @@ export function HeroSection() {
       >
         <Link
           href={ROUTES.products}
-          className="group relative overflow-hidden border border-white bg-white px-10 py-4 type-label text-black tracking-[0.18em] transition-colors duration-300 hover:bg-transparent hover:text-white"
+          className="group relative overflow-hidden border border-white bg-white px-10 py-4 font-sans text-[0.7rem] font-semibold uppercase text-black tracking-[0.2em] transition-colors duration-300 hover:bg-transparent hover:text-white"
         >
           <span className="relative z-10">COMPRAR DROP</span>
           <span className="absolute inset-0 -translate-x-full bg-white/10 transition-transform duration-500 group-hover:translate-x-0" />
@@ -213,7 +213,7 @@ export function HeroSection() {
 
         <Link
           href="#featured"
-          className="type-label text-foreground-muted tracking-[0.15em] underline-offset-4 hover:text-accent hover:underline transition-colors duration-200"
+          className="font-sans text-[0.7rem] font-medium uppercase text-white/40 tracking-[0.18em] underline-offset-4 hover:text-white hover:underline transition-colors duration-200"
         >
           SAIBA MAIS
         </Link>
