@@ -73,7 +73,7 @@ export function Footer() {
             © {new Date().getFullYear()} {SITE_NAME}. Todos os direitos reservados.
           </p>
           <p className="type-small text-foreground-subtle">
-            Feito com ♥ no Brasil
+            Feito no Brasil
           </p>
         </div>
       </Container>

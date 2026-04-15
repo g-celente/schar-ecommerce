@@ -89,7 +89,7 @@ export function HeroSection() {
   return (
     <section
       ref={containerRef}
-      className="relative flex h-dvh min-h-[640px] w-full flex-col items-center justify-end overflow-hidden pb-16 md:pb-20"
+      className="relative flex h-dvh min-h-[640px] w-full flex-col items-center justify-center overflow-hidden"
       aria-label="Hero banner"
     >
       {/* ── Background slides with parallax ── */}
@@ -131,7 +131,7 @@ export function HeroSection() {
       <motion.div
         className="absolute inset-0 will-change-[opacity]"
         style={{
-          background: `linear-gradient(to top, var(--background) 0%, rgba(10,10,10,0.7) 40%, rgba(10,10,10,0.15) 100%)`,
+          background: `linear-gradient(to top, var(--background) 0%, rgba(10,10,10,0.5) 35%, rgba(10,10,10,0.3) 60%, rgba(10,10,10,0.15) 100%)`,
           opacity: overlayOpacity,
         }}
         aria-hidden="true"
@@ -147,24 +147,9 @@ export function HeroSection() {
         aria-hidden="true"
       />
 
-      {/* ── Label overline ── */}
-      <motion.div
-        className="relative z-10 mb-6 flex items-center gap-3"
-        variants={fadeIn}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        transition={{ delay: 0.2 }}
-      >
-        <span className="h-px w-8 bg-white/40" />
-        <span className="font-sans text-[0.65rem] font-medium uppercase text-white/60 tracking-[0.25em]">
-          Drop Primavera — 2026
-        </span>
-        <span className="h-px w-8 bg-white/40" />
-      </motion.div>
-
       {/* ── Main headline ── */}
       <motion.div
-        className="relative z-10 overflow-hidden text-center"
+        className="relative z-10 text-center"
         variants={staggerContainer}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
@@ -172,7 +157,7 @@ export function HeroSection() {
         {HERO_WORDS.map((word, i) => (
           <div key={word} className="overflow-hidden">
             <motion.h1
-              className="block font-heading font-bold text-white tracking-tight text-[clamp(2.5rem,12vw,7rem)] leading-[0.95]"
+              className="block font-heading font-extrabold uppercase text-white tracking-[-0.02em] text-[clamp(3.5rem,16vw,10rem)] leading-[0.88]"
               variants={heroReveal}
               transition={{ delay: i * 0.12 }}
             >
@@ -181,19 +166,6 @@ export function HeroSection() {
           </div>
         ))}
       </motion.div>
-
-      {/* ── Sub copy ── */}
-      <motion.p
-        className="relative z-10 mt-6 max-w-xs text-center font-sans text-sm font-light text-white/50 leading-relaxed md:max-w-sm"
-        variants={fadeIn}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        transition={{ delay: 0.65 }}
-      >
-        Peças limitadas. Sem reposição.
-        <br />
-        Envio nacional em 48 horas.
-      </motion.p>
 
       {/* ── CTAs ── */}
       <motion.div
