@@ -94,7 +94,7 @@ export default function SobrePage() {
                 Cada estampa carrega identidade, expressão e história.
               </p>
               <p>
-                As camisetas são oversized premium, com modelagem estruturada, tecido
+                As camiseta são oversized premium, com modelagem estruturada, tecido
                 de alta gramatura, toque macio e acabamento impecável. Qualidade que
                 você sente no primeiro contato e percebe na durabilidade.
               </p>
@@ -193,7 +193,7 @@ export default function SobrePage() {
       {/* ── CTA ── */}
       <div className="border-t border-border">
         <Container className="py-20 text-center flex flex-col items-center gap-6">
-          <p className="type-label text-foreground-muted tracking-[0.2em]">DROP 001 — AO VIVO</p>
+          <p className="type-label text-foreground-muted tracking-[0.2em]">DROP BLACK AND WHITE - DISPONÍVEL EM BREVE</p>
           <h2 className="type-title">EXPLORE OS DROPS</h2>
           <p className="type-body text-foreground-muted max-w-sm">
             Edição limitada. Sem reposição. Quando acaba, acabou.

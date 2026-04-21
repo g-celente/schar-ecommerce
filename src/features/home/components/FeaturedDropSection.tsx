@@ -34,7 +34,7 @@ export function FeaturedDropSection() {
               variants={fadeUp}
               className="type-label text-foreground-muted tracking-[0.2em] mb-2"
             >
-              DROP 001 — PRIMAVERA 2026
+              DROP BLACK AND WHITE - DISPONÍVEL EM BREVE
             </motion.p>
             <motion.h2
               variants={fadeUp}

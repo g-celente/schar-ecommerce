@@ -147,23 +147,17 @@ export function ProductInfo({ product }: ProductInfoProps) {
       )}
 
       {/* ── Stock status ── */}
-      <motion.div variants={fadeUp} className="flex items-center gap-2" role="status">
-        <span
-          className={cn(
-            "inline-block h-1.5 w-1.5 rounded-full",
-            isSoldOut ? "bg-foreground-subtle" : "bg-emerald-400"
-          )}
-          aria-hidden="true"
-        />
-        <p
-          className={cn(
-            "type-label tracking-[0.15em]",
-            isSoldOut ? "text-foreground-muted" : "text-emerald-400"
-          )}
-        >
-          {isSoldOut ? "INDISPONÍVEL" : "DISPONÍVEL"}
-        </p>
-      </motion.div>
+      {isSoldOut && (
+        <motion.div variants={fadeUp} className="flex items-center gap-2" role="status">
+          <span
+            className="inline-block h-1.5 w-1.5 rounded-full bg-foreground-subtle"
+            aria-hidden="true"
+          />
+          <p className="type-label tracking-[0.15em] text-foreground-muted">
+            INDISPONÍVEL
+          </p>
+        </motion.div>
+      )}
 
       {/* ── Add to cart ── */}
       <motion.div variants={fadeUp} className="flex flex-col gap-3 sm:flex-row">

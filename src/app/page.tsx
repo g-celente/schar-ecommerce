@@ -10,7 +10,7 @@ import { NewsletterSection } from "@/features/home/components/NewsletterSection"
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: "Home",
+  title: "Início",
   description:
     "Schar — limited streetwear drops. Shop the latest collection before it sells out.",
 };

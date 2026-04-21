@@ -32,7 +32,10 @@ export default function DropsPage() {
         <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="type-label text-foreground-muted tracking-[0.2em] mb-2">
-              DROP 001 — PRIMAVERA 2026
+              DROP BLACK AND WHITE
+            </p>
+             <p className="type-label text-foreground-muted tracking-[0.2em] mb-2">
+             EM BREVE
             </p>
             <h2 className="type-title">COLEÇÃO ATUAL</h2>
           </div>

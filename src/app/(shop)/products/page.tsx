@@ -41,7 +41,7 @@ export default async function ProductsPage({
         <div className="mb-10 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="type-label text-foreground-muted tracking-[0.25em] mb-2">
-              DROP 001 — PRIMAVERA 2026
+              DROP BLACK AND WHITE - DISPONÍVEL EM BREVE
             </p>
             <h1 className="type-title">LOJA</h1>
           </div>

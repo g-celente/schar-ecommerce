@@ -11,7 +11,7 @@ import { ROUTES } from "@/lib/constants";
 const GRID_CATEGORIES = [
   {
     id: "gc-1",
-    name: "CAMISETAS",
+    name: "CAMISETA",
     slug: "camisetas",
     image: "/products/tee-001/front.jpeg",
     tag: "CORE",

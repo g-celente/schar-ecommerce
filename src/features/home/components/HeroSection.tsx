@@ -7,7 +7,7 @@ import { motion, useScroll, useTransform, useInView, AnimatePresence } from "fra
 import { heroReveal, staggerContainer, fadeIn } from "@/lib/motion";
 import { ROUTES } from "@/lib/constants";
 
-const HERO_WORDS = ["SCHAR", "DROP", "001"];
+const HERO_WORDS = ["SCHAR", "DROP", "EM BREVE"];
 
 /* ── Hero slides — add/remove images here ──────────────────────────────────── */
 const HERO_SLIDES = [
@@ -157,7 +157,7 @@ export function HeroSection() {
         {HERO_WORDS.map((word, i) => (
           <div key={word} className="overflow-hidden">
             <motion.h1
-              className="block font-heading font-extrabold uppercase text-white tracking-[-0.02em] text-[clamp(3.5rem,16vw,10rem)] leading-[0.88]"
+              className="block font-heading font-extrabold uppercase text-white tracking-[-0.02em] text-[clamp(3.5rem,16vw,8rem)] leading-[0.88]"
               variants={heroReveal}
               transition={{ delay: i * 0.12 }}
             >

@@ -13,7 +13,7 @@ import { useCartStore } from "@/features/cart/store/cart.store";
 import { ThemeToggle } from "@/features/theme/ThemeToggle";
 
 const NAV_LINKS = [
-  { label: "HOME", href: ROUTES.home },
+  { label: "INÍCIO", href: ROUTES.home },
   { label: "LOJA", href: ROUTES.products },
   { label: "DROPS", href: ROUTES.drops },
   { label: "SOBRE", href: ROUTES.about },
@@ -117,7 +117,7 @@ export function Navbar() {
                       (scrolled || !isHome) ? "text-foreground-subtle font-semibold" : "text-white/70 font-extrabold"
                     )}
                   >
-                    SIGN OUT
+                    SAIR
                   </button>
                 </>
               ) : (
@@ -128,7 +128,7 @@ export function Navbar() {
                     (scrolled || !isHome) ? "text-foreground font-semibold" : "text-white font-extrabold"
                   )}
                 >
-                  ACCOUNT
+                  CONTA
                 </Link>
               )}
               <button
@@ -140,7 +140,7 @@ export function Navbar() {
                   (scrolled || !isHome) ? "text-foreground font-semibold" : "text-white font-extrabold"
                 )}
               >
-                BAG ({mounted ? itemCount : 0})
+                Sacola ({mounted ? itemCount : 0})
                 {mounted && itemCount > 0 && (
                   <span className="absolute -top-1.5 -right-2.5 w-4 h-4 flex items-center justify-center rounded-full bg-foreground text-background text-[0.5rem] font-bold">
                     {itemCount > 9 ? "9+" : itemCount}
@@ -273,6 +273,7 @@ export function Navbar() {
                   SACOLA ({mounted ? itemCount : 0})
                 </button>
               </motion.div>
+
             </nav>
           </motion.div>
         )}

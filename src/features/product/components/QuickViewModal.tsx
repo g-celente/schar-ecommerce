@@ -264,17 +264,13 @@ export function QuickViewModal({
                     )}
 
                     {/* Availability badge */}
-                    <div className="absolute left-3 top-3 z-10 flex flex-col gap-1.5 mt-7">
-                      {isSoldOut ? (
+                    {isSoldOut && (
+                      <div className="absolute left-3 top-3 z-10 flex flex-col gap-1.5 mt-7">
                         <span className="type-label bg-surface-3/90 px-2.5 py-1.5 text-foreground-muted tracking-widest backdrop-blur-sm">
                           INDISPONÍVEL
                         </span>
-                      ) : (
-                        <span className="type-label bg-black/75 px-2.5 py-1.5 text-emerald-400 tracking-widest backdrop-blur-sm">
-                          DISPONÍVEL
-                        </span>
-                      )}
-                    </div>
+                      </div>
+                    )}
 
                     {/* Mobile image indicators */}
                     {product.images.length > 1 && (
@@ -437,24 +433,20 @@ export function QuickViewModal({
                   </p>
 
                   {/* Availability status */}
-                  <div className="flex items-center gap-2">
-                    <span
-                      className={cn(
-                        "inline-block h-1.5 w-1.5 rounded-full",
-                        isSoldOut ? "bg-foreground-subtle" : "bg-emerald-400"
-                      )}
-                      aria-hidden="true"
-                    />
-                    <p
-                      className={cn(
-                        "type-label tracking-[0.15em]",
-                        isSoldOut ? "text-foreground-muted" : "text-emerald-400"
-                      )}
-                      role="status"
-                    >
-                      {isSoldOut ? "INDISPONÍVEL" : "DISPONÍVEL"}
-                    </p>
-                  </div>
+                  {isSoldOut && (
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="inline-block h-1.5 w-1.5 rounded-full bg-foreground-subtle"
+                        aria-hidden="true"
+                      />
+                      <p
+                        className="type-label tracking-[0.15em] text-foreground-muted"
+                        role="status"
+                      >
+                        INDISPONÍVEL
+                      </p>
+                    </div>
+                  )}
 
                   {/* ── Actions ────────────────────────────────────────── */}
                   <div className="flex flex-col gap-3 pt-1 border-t border-border mt-1">

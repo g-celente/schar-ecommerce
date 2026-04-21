@@ -17,7 +17,7 @@ export function CartSummary({ onClose }: CartSummaryProps) {
   return (
     <div className="border-t border-border-strong pt-6 space-y-4">
       {/* Shipping notice */}
-      <div className="text-center py-3 border-y border-border">
+      {/* <div className="text-center py-3 border-y border-border">
         {remainingForFreeShipping > 0 ? (
           <p className="type-small text-foreground-muted">
             Adicione{" "}
@@ -32,7 +32,7 @@ export function CartSummary({ onClose }: CartSummaryProps) {
             <span className="font-medium tracking-wide">FRETE GRÁTIS</span>
           </p>
         )}
-      </div>
+      </div> */}
 
       {/* Subtotal */}
       <div className="flex items-baseline justify-between">
@@ -42,9 +42,9 @@ export function CartSummary({ onClose }: CartSummaryProps) {
         <span className="type-price-lg">{formatPrice(subtotal)}</span>
       </div>
 
-      <p className="type-small text-foreground-subtle">
+      {/* <p className="type-small text-foreground-subtle">
         Impostos e frete calculados no checkout
-      </p>
+      </p> */}
 
       {/* Drawer CTA — only shown when inside the drawer (onClose is provided) */}
       {onClose && (

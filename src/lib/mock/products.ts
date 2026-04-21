@@ -12,8 +12,8 @@ import type { Product } from "@/types";
 export const DROP_001_PRODUCTS: Product[] = [
   {
     id: "schar-001",
-    slug: "tee-001",
-    name: "TEE 001",
+    slug: "Black",
+    name: "BLACK",
     description:
       "Camiseta oversized premium. Modelagem estruturada com drop shoulder. Tecido de alta gramatura — toque macio e acabamento impecável. Qualidade que você sente no primeiro contato e percebe na durabilidade. Estampa exclusiva DROP 001.",
     price: 109.90,
@@ -21,12 +21,12 @@ export const DROP_001_PRODUCTS: Product[] = [
       {
         id: "s001-a",
         url: "/products/tee-001/front.jpeg",
-        alt: "SCHAR TEE 001 — DROP 001",
+        alt: "SCHAR BLACK — DROP 001",
       },
       {
         id: "s002-a",
         url: "/products/tee-001/image1.jpeg",
-        alt: "SCHAR TEE 001 — DROP 001",
+        alt: "SCHAR BLACK — DROP 001",
       },
       {
         id: "s003-a",
@@ -49,17 +49,17 @@ export const DROP_001_PRODUCTS: Product[] = [
         alt: "SCHAR TEE 001 — DROP 001",
       },
     ],
-    category: { id: "cat-camisetas", name: "CAMISETAS", slug: "camisetas" },
+    category: { id: "cat-camiseta", name: "CAMISETA", slug: "camiseta" },
     tags: ["drop-1"],
     sizes: ["P", "M", "G", "GG"],
-    stock: 20,
+    stock: 0,
     rating: 5,
     reviewCount: 0,
   },
   {
     id: "schar-002",
-    slug: "tee-002",
-    name: "TEE 002",
+    slug: "white",
+    name: "WHITE",
     description:
       "Camiseta oversized premium. Modelagem estruturada com drop shoulder. Tecido de alta gramatura — toque macio e acabamento impecável. Qualidade que você sente no primeiro contato e percebe na durabilidade. Estampa exclusiva DROP 001.",
     price: 109.90,
@@ -95,10 +95,10 @@ export const DROP_001_PRODUCTS: Product[] = [
         alt: "SCHAR TEE 002 — DROP 001",
       },
     ],
-    category: { id: "cat-camisetas", name: "CAMISETAS", slug: "camisetas" },
+    category: { id: "cat-camiseta", name: "CAMISETA", slug: "camiseta" },
     tags: ["drop-1"],
     sizes: ["P", "M", "G", "GG"],
-    stock: 20,
+    stock: 0,
     rating: 5,
     reviewCount: 0,
   }
@@ -113,9 +113,9 @@ export const FEATURED_PRODUCTS: Product[] = DROP_001_PRODUCTS;
 // ─── Category list ────────────────────────────────────────────────────────────
 export const CATEGORIES = [
   {
-    id: "cat-camisetas",
+    id: "cat-camiseta",
     name: "DROP 01",
-    slug: "camisetas",
+    slug: "camiseta",
     image: "/products/tee-001/front.jpeg",
     count: 2,
   },

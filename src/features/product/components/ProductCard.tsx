@@ -78,13 +78,9 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
 
         {/* Badges */}
         <div className="absolute left-2 top-2 z-10 flex flex-col gap-1">
-          {isSoldOut ? (
+          {isSoldOut && (
             <span className="type-label bg-surface-3/90 px-2 py-1 text-foreground-muted tracking-widest backdrop-blur-sm">
               INDISPONÍVEL
-            </span>
-          ) : (
-            <span className="type-label bg-black/80 px-2 py-1 text-emerald-400 tracking-widest backdrop-blur-sm">
-              DISPONÍVEL
             </span>
           )}
           {!isSoldOut && product.tags.includes("new") && (

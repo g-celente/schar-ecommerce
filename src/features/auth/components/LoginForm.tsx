@@ -109,7 +109,7 @@ export function LoginForm() {
       {/* Google */}
       <div className="relative flex items-center gap-3">
         <div className="flex-1 h-px bg-border" />
-        <span className="type-small text-foreground-subtle shrink-0">or</span>
+        <span className="type-small text-foreground-subtle shrink-0">ou</span>
         <div className="flex-1 h-px bg-border" />
       </div>
 
